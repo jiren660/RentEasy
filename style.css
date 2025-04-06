@@ -58,6 +58,10 @@
 
   }
 
+  .btn1 a{
+    text-decoration: none;
+    color: #000000;
+  }
   .btn1:hover{
     background-color: rgb(54, 57, 56);
     color: #fff;
