@@ -104,9 +104,8 @@ nav ul li a.active {
 .btn-primary {
   background-color: #a0b6f9;
   border: none;
-  padding: 16px 40px;
-  font-size: 1.1rem;
-  font-weight: 600;
+  padding: 12px 36px;
+  font-weight: 500;
   border-radius: 12px;
   margin-top: 20px;
 }
