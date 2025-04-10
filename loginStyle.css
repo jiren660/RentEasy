@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    animation: fadeIn 1s ease;
   }
   
   body, html {
@@ -17,7 +18,37 @@
   
   .left-image {
     flex: 0.6;
-    background: url('bahay\ cover\ page.jpg') center center/cover no-repeat;
+    background: url('IMG/bahay\ cover\ page.jpg') center center/cover no-repeat;
+  }
+
+  .logo{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 0px;
+    
+  }
+.logo h1{
+  margin-left: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.5rem;
+    color: #f3f3f0;
+  }
+  .logo img{
+  margin-left: 20px;
+    width: 80px;
+    height: 80px;
+  }
+
+  .quote {
+    margin-top: 10px;
+    margin-left: 50px;
+    bottom: 20px;
+    left: 20px;
+    color:  #f3f3f0;
+    font-size: 1.2rem;
+    line-height:46px;
+   
   }
   
   .form {
