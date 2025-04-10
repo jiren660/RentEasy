@@ -104,8 +104,9 @@ nav ul li a.active {
 .btn-primary {
   background-color: #a0b6f9;
   border: none;
-  padding: 12px 36px;
-  font-weight: 500;
+  padding: 16px 40px;
+  font-size: 1.1rem;
+  font-weight: 600;
   border-radius: 12px;
   margin-top: 20px;
 }
@@ -258,4 +259,51 @@ nav ul li a.active {
 .icon-btn {
   background: none;
   border: none;
+}
+
+.card img {
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.carousel-inner {
+  border-radius: 5px;
+}
+.property-info {
+  font-size: 0.9rem;
+}
+
+.property-details i {
+  margin-right: 5px;
+}
+
+.arrow-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  border: 1px solid #ced4da;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.arrow-btn:hover {
+  background-color: #e2e6ea;
+}
+
+.btn-wrapper {
+  display: flex;
+  gap: 10px;
+  justify-content: end;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 1rem;
 }
