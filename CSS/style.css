@@ -101,42 +101,51 @@ nav ul li a.active {
   color: #fff;
 }
 
-.btn-primary {
-  background-color: #77988C;
-  color: white;
-  padding: 10px 24px;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
+.property-filters {
+  font-size: 1.1rem;
+  padding: 1.5rem !important;
 }
 
-.btn-primary:hover {
-  background-color: #5f7f74;
-  color: white;
+.property-filters .btn-outline-success {
+  border-color: #77988c;
+  color: #77988c;
+  padding: 0.6rem 1.2rem;
+  font-size: 1.05rem;
+  transition: all 0.3s ease;
+  box-shadow: none;
 }
 
-.btn-outline-primary.active {
-  background-color: #77988C;
-  color: white;
+.property-filters .btn-outline-success:hover {
+  background-color: #94b1a0;
+  color: #fff;
+  border-color: #94b1a0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
 }
 
-.btn-outline-primary {
-  border: 1px solid #77988C;
-  color: #77988C;
-  background-color: white;
-  padding: 10px 20px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+.property-filters .btn-check:checked + .btn-outline-success {
+  background-color: #77988c;
+  color: #fff;
+  border-color: #77988c;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
 }
 
-.btn-outline-primary:hover {
-  background-color: #5f7f74;
-  color: white;
+.property-filters .form-control,
+.property-filters .form-select {
+  border-radius: 12px;
+  font-size: 1.05rem;
+  padding: 0.6rem 1rem;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
-.form-control,
-.form-select {
-  font-size: 1rem;
-  padding: 10px 14px;
+.property-filters .form-control:focus,
+.property-filters .form-select:focus {
+  border-color: #77988c;
+  box-shadow: 0 0 0 0.2rem rgba(119, 152, 140, 0.25);
 }
+
+
 
 .hero-section {
   background-color: white;
