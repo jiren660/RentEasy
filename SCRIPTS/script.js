@@ -113,7 +113,7 @@ const properties = [
             </div>
           </div>
           <div class="card-footer bg-transparent text-center">
-            <button class="btn btn-primary w-100">View</button>
+            <button class="btn btn-success w-100">View</button>
           </div>
         </div>
       `;
