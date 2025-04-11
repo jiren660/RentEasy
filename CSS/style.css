@@ -1,4 +1,3 @@
-/* Global Reset and Base Styles */
 * {
   margin: 0;
   padding: 0;
@@ -13,7 +12,6 @@ body {
   background-color: #f8f9fa;
 }
 
-/* Header */
 header {
   display: flex;
   justify-content: space-between;
@@ -64,7 +62,6 @@ nav ul li a.active {
   border-bottom: 2px solid rgb(119, 152, 140);
 }
 
-/* Buttons */
 .login-signup button {
   padding: 7px 8px;
   margin-left: 10px;
@@ -113,8 +110,6 @@ nav ul li a.active {
   border-radius: 12px;
   margin-top: 20px;
 }
-
-/* Custom & Toggle Buttons */
 .btn-custom,
 .btn-toggle.active {
   background-color: #77988C;
@@ -135,13 +130,11 @@ nav ul li a.active {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Forms */
 .form-control,
 .form-select {
   border: 1px solid #ccc;
 }
 
-/* Hero Section */
 .hero-section {
   background-color: white;
   border-radius: 20px;
@@ -284,7 +277,6 @@ nav ul li a.active {
   margin-right: 5px;
 }
 
-/* Arrow Button */
 .arrow-btn {
   width: 40px;
   height: 40px;
@@ -302,7 +294,6 @@ nav ul li a.active {
   background-color: #e2e6ea;
 }
 
-/* Utility */
 .btn-wrapper {
   display: flex;
   gap: 10px;
