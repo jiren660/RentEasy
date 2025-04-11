@@ -111,31 +111,6 @@ nav ul li a.active {
   margin-top: 20px;
 }
 
-.btn-custom,
-.btn-toggle.active {
-  background-color: #77988C;
-  color: white;
-  transition: background-color 0.3s ease;
-}
-
-.btn-custom:hover,
-.btn-toggle:hover {
-  background-color: #5f7f74;
-  color: white;
-}
-
-.btn-toggle {
-  border: 1px solid #77988C;
-  color: #77988C;
-  background-color: white;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.form-control,
-.form-select {
-  border: 1px solid #ccc;
-}
-
 .hero-section {
   background-color: white;
   border-radius: 20px;
@@ -160,7 +135,7 @@ nav ul li a.active {
   background: white;
   border-radius: 15px;
   padding: 15px 25px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
   display: flex;
   align-items: center;
   gap: 10px;
@@ -179,7 +154,7 @@ nav ul li a.active {
   border-radius: 15px;
   overflow: hidden;
   width: 280px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
 }
 
 .mini-card img {
@@ -251,7 +226,7 @@ nav ul li a.active {
   background: white;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
   position: relative;
   z-index: 10;
 }
@@ -263,13 +238,38 @@ nav ul li a.active {
 .card img {
   height: 200px;
   object-fit: cover;
+}
+
+.stats-box h2 {
+  font-size: 1.5rem;
+}
+
+.subscribe-section {
+  background-color: #0d1b2a;
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.footer {
+  background-color: #f8f9fa;
+  padding: 40px 20px;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+}
+
+.card img {
+  height: 200px;
+  object-fit: cover;
   border-radius: 5px;
 }
 
 .carousel-inner {
   border-radius: 5px;
 }
-
 .property-info {
   font-size: 0.9rem;
 }
@@ -306,21 +306,4 @@ nav ul li a.active {
   font-weight: 700;
   font-size: 2rem;
   margin-bottom: 1rem;
-}
-
-.subscribe-section {
-  background-color: #0d1b2a;
-  color: white;
-  padding: 40px 20px;
-  text-align: center;
-}
-
-.footer {
-  background-color: #f8f9fa;
-  padding: 40px 20px;
-}
-
-.icon-btn {
-  background: none;
-  border: none;
 }

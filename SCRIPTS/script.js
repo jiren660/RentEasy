@@ -6,6 +6,14 @@ navLinks.forEach(link => {
     });
 });
 
+const buttons = document.querySelectorAll('.btn-toggle');
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    buttons.forEach(btn => btn.classList.remove('active'));
+    button.classList.add('active');
+  });
+});
+
 const properties = [
     {
       name: 'The Minimalist House',
