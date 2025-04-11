@@ -102,13 +102,40 @@ nav ul li a.active {
 }
 
 .btn-primary {
-  background-color: #a0b6f9;
-  border: none;
-  padding: 16px 40px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  border-radius: 12px;
-  margin-top: 20px;
+  background-color: #77988C;
+  color: white;
+  padding: 10px 24px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #5f7f74;
+  color: white;
+}
+
+.btn-outline-primary.active {
+  background-color: #77988C;
+  color: white;
+}
+
+.btn-outline-primary {
+  border: 1px solid #77988C;
+  color: #77988C;
+  background-color: white;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+  background-color: #5f7f74;
+  color: white;
+}
+
+.form-control,
+.form-select {
+  font-size: 1rem;
+  padding: 10px 14px;
 }
 
 .hero-section {
