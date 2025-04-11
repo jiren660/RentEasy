@@ -6,7 +6,7 @@ navLinks.forEach(link => {
     });
 });
 
-const buttons = document.querySelectorAll('.btn-toggle');
+const buttons = document.querySelectorAll('.btn-outline-primary');
 buttons.forEach(button => {
   button.addEventListener('click', () => {
     buttons.forEach(btn => btn.classList.remove('active'));
