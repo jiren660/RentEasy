@@ -145,8 +145,6 @@ nav ul li a.active {
   box-shadow: 0 0 0 0.2rem rgba(119, 152, 140, 0.25);
 }
 
-
-
 .hero-section {
   background-color: white;
   border-radius: 20px;
@@ -223,7 +221,7 @@ nav ul li a.active {
 
 .stats {
   font-size: 2rem;
-  color: #7a8ff0;
+  color: #77988C;
   font-weight: bold;
 }
 
