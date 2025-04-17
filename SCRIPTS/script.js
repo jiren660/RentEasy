@@ -1,18 +1,3 @@
-const navLinks = document.querySelectorAll('nav ul li a');
-navLinks.forEach(link => {
-    link.addEventListener('click', function() {
-        navLinks.forEach(link => link.classList.remove('active'));
-        this.classList.add('active');
-    });
-});
-
-const buttons = document.querySelectorAll('.btn-outline-primary');
-buttons.forEach(button => {
-  button.addEventListener('click', () => {
-    buttons.forEach(btn => btn.classList.remove('active'));
-    button.classList.add('active');
-  });
-});
 
 const properties = [
     {
