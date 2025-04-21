@@ -380,3 +380,115 @@ nav ul li a.active {
     min-height: 450px;
   }
 }
+
+/* How it Works Section */
+.how-it-works {
+  padding: 60px 20px;
+  text-align: center;
+  background-color: white;
+}
+
+.how-it-works h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.features {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.feature-box {
+  background-color: #d5e5d5;
+  padding: 25px 20px;
+  border-radius: 15px;
+  width: 260px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+  text-align: center;
+}
+
+.feature-box:hover {
+  transform: translateY(-5px);
+}
+
+.feature-box .icon {
+  font-size: 36px;
+  margin-bottom: 15px;
+  background-color: #eef1da;
+  border-radius: 12px;
+  padding: 10px;
+  display: inline-block;
+}
+
+.feature-box h3 {
+  font-size: 1.2rem;
+  color: #000;
+  margin-bottom: 8px;
+}
+
+.feature-box p {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.image-container2 {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.image-container2 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.post-overlay-text {
+  position: absolute;
+  top: 42.5%;
+  left: 6%;
+  transform: translateY(-50%);
+  opacity: 0.8;
+  color: white;
+  font-size: 2.6rem;
+  font-weight: 400;
+  letter-spacing: 1.2px;
+  line-height: 1.2;
+  font-family: "Arial", sans-serif;
+}
+
+.post-overlay-text b {
+  font-size: 2.4rem;
+  font-weight: 800;
+  font-family: "Arial", sans-serif;
+}
+
+.upload-btn {
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 10px 70px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 10px; /* <-- This moves it to the right */
+  margin-top: 5px; /* <-- Moves it down */
+}
+
+.upload-btn:hover {
+  background-color: #333;
+}
+
+.upload-btn:active {
+  background-color: black;
+  transform: scale(0.98);
+}
