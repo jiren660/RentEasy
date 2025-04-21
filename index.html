@@ -4,26 +4,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="CSS/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <title>RentEasy - Find Your Perfect Rental</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-  <title>RentEasy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="CSS/style.css">
+  <link rel="icon" href="IMG/logo_green.png" type="image/png">
 </head>
 
 <body>
-
   <div id="top"></div>
 
+  <!-- Header -->
   <header>
-    <div class="logo"><img src="IMG/logo green.png" alt="logo">
+    <div class="logo">
+      <img src="IMG/logo green.png" alt="RentEasy Logo">
       <h1>RentEasy</h1>
     </div>
-    
-    <nav>
 
+    <nav>
       <ul>
-        <li><a href="#top">Home</a></li>
+        <li><a href="#top" class="active">Home</a></li>
         <li><a href="#how-it-works">How It Works</a></li>
         <li><a href="#browse">Browse Listings</a></li>
         <li><a href="#post">Post a Property</a></li>
@@ -32,36 +33,40 @@
       </ul>
     </nav>
 
+    <!-- Login/Signup Buttons (Visible when logged out) -->
     <div class="login-signup" id="loginSignupButtons">
       <button class="btn1"><a href="login.html">Log in</a></button>
       <button class="btn2"><a href="signup.html">Sign up</a></button>
     </div>
-    
-<div class="user-menu d-none" id="userMenu">
-  <div class="dropdown">
-    <button class="btn btn-outline-success dropdown-toggle" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-      <img src="https://static.vecteezy.com/system/resources/previews/019/879/186/original/user-icon-on-transparent-background-free-png.png" alt="Profile" class="profile-icon" />
-    </button>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-      <li><a class="dropdown-item" href="profile.html">Profile</a></li>
-      <li><a class="dropdown-item" href="my-listings.html">My Listings</a></li>
-      <li><a class="dropdown-item" href="favorites.html">Favorites</a></li>
-      <li><hr class="dropdown-divider"></li>
-      <li><a class="dropdown-item" href="#" id="logoutBtn">Logout</a></li>
-    </ul>
-    
-  </div>
-</div>
 
+    <!-- User Menu (Visible when logged in) -->
+    <div class="user-menu d-none" id="userMenu">
+      <div class="dropdown">
+        <button class="btn btn-outline-success dropdown-toggle" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="https://static.vecteezy.com/system/resources/previews/019/879/186/original/user-icon-on-transparent-background-free-png.png" alt="Profile" class="profile-icon" />
+          <!-- Optionally display username here -->
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+          <li><a class="dropdown-item" href="profile.html">Profile</a></li>
+          <li><a class="dropdown-item" href="my-listings.html">My Listings</a></li>
+          <li><a class="dropdown-item" href="favorites.html">Favorites</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#" id="logoutBtn">Logout</a></li>
+        </ul>
+      </div>
+    </div>
   </header>
 
+  <!-- Main Content -->
   <main>
+
+    <!-- Home Section (Hero Image) -->
     <section id="home">
       <div class="image-container">
-        <img src="IMG/bahay cover page.jpg" alt="house cover page">
+        <img src="IMG/bahay cover page.jpg" alt="Modern house exterior">
         <div class="overlay-text">
           With <br>
-         <i>RentEasy,</i><br>
+          <i>RentEasy,</i><br>
           finding the <br>
           perfect <br>
           place has <br>
@@ -71,152 +76,127 @@
       </div>
     </section>
 
-    <!-- How It Works -->
-    <section id="how-it-works">
-      <section class="how-it-works">
-        <h2>How RentEasy Works</h2>
+    <section id="how-it-works" class="py-5">
+      <div class="container">
+        <h2 class="text-center mb-5 fw-bold">How RentEasy Works</h2>
         <div class="features">
           <div class="feature-box">
             <div class="icon">🏠</div>
             <h3>Browse Listings</h3>
-            <p>Search verified properties across cities.</p>
+            <p>Search verified properties across cities with ease.</p>
           </div>
           <div class="feature-box">
             <div class="icon">📱</div>
             <h3>Contact Landlords</h3>
-            <p>Message property owners directly.</p>
+            <p>Connect directly with property owners via secure messaging.</p>
           </div>
           <div class="feature-box">
             <div class="icon">✅</div>
             <h3>Rent with Confidence</h3>
-            <p>Secure your new home seamlessly.</p>
+            <p>Secure your ideal home through our streamlined process.</p>
           </div>
         </div>
-      </section>
+      </div>
     </section>
-    
-    <section id="browse">
-      <div class="container property-filters shadow-sm p-3 rounded bg-white mt-3 mb-4">
-        <div class="row gy-2 gx-2 align-items-center">
-          
+
+    <!-- Renting Made Easy Section -->
+    <section id="renting-easy" class="container my-5">
+       <div class="hero-section d-flex shadow">
+          <div class="left-col">
+             <div class="watch-tour">
+               <i class="fas fa-play-circle fa-2x text-success"></i>
+               <div>
+                 <strong>View House Tour</strong><br>
+                 <small class="text-primary"><a href="#">Watch Video →</a></small>
+               </div>
+             </div>
+
+             <div class="mini-card">
+               <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Minimalist House Example">
+               <div class="mini-card-body">
+                 <p class="mb-1"><strong>Minimalist House</strong></p>
+                 <!-- Using Font Awesome icon -->
+                 <p class="text-muted mb-1"><i class="fas fa-map-marker-alt me-1"></i> Divisoria, Zamboanga City</p>
+                 <p class="text-primary mb-0"><a href="#">View House →</a></p> <!-- Placeholder link -->
+               </div>
+             </div>
+          </div>
+
+          <div class="right-col">
+            <h1 class="fw-bold mb-3">Renting made easy,<br><span class="text-success">Living made better</span></h1>
+            <p class="lead mb-4">We curate quality listings to ensure you find a place you'll love to call home.</p>
+
+            <div class="d-flex align-items-center mb-4">
+              <div class="stats me-3">10K+</div>
+              <div class="text-muted">Happy renters served</div>
+            </div>
+
+            <div class="d-flex align-items-center mb-4">
+              <div class="stats me-3">24K+</div>
+              <div class="text-muted">Properties listed nationwide</div>
+            </div>
+
+            <div class="d-flex align-items-center mb-4">
+              <div class="stats me-3">45+</div>
+              <div class="text-muted">Partnered agencies</div>
+            </div>
+
+            <button class="btn btn-success btn-lg px-4">Learn More</button>
+          </div>
+        </div>
+    </section>
+
+    <!-- Browse Listings Section -->
+    <section id="browse" class="py-5 bg-light">
+      <!-- Filters -->
+      <div class="container property-filters shadow-sm p-3 rounded bg-white mb-5">
+        <div class="row gy-2 gx-3 align-items-center">
+
           <div class="col-auto">
+             <label class="form-label d-block mb-1 small text-muted">Type:</label>
             <div class="btn-group" role="group" aria-label="Property type">
               <input type="radio" class="btn-check" name="propertyType" id="house" autocomplete="off" checked>
               <label class="btn btn-outline-success" for="house">House</label>
-      
+
               <input type="radio" class="btn-check" name="propertyType" id="apartment" autocomplete="off">
               <label class="btn btn-outline-success" for="apartment">Apartment</label>
-      
+
               <input type="radio" class="btn-check" name="propertyType" id="dormitory" autocomplete="off">
               <label class="btn btn-outline-success" for="dormitory">Dormitory</label>
             </div>
           </div>
-      
+
           <div class="col-sm">
-            <input type="text" class="form-control" placeholder="Zamboanga City">
+             <label for="locationInput" class="form-label small text-muted">Location:</label>
+            <input type="text" id="locationInput" class="form-control" placeholder="e.g., Zamboanga City">
           </div>
-      
+
           <div class="col-sm">
-            <input type="text" class="form-control" placeholder="Minimalist">
+            <label for="styleInput" class="form-label small text-muted">Style/Keyword:</label>
+            <input type="text" id="styleInput" class="form-control" placeholder="e.g., Minimalist, Near University">
           </div>
-      
+
           <div class="col-sm">
-            <select class="form-select">
-              <option selected>₱10,000 - ₱100,000</option>
-              <option>₱100,000 - ₱200,000</option>
+            <label for="priceRange" class="form-label small text-muted">Price Range:</label>
+            <select class="form-select" id="priceRange">
+              <option selected>Any Price</option>
+              <option>₱5,000 - ₱10,000</option>
+              <option>₱10,001 - ₱20,000</option>
+              <option>₱20,001 - ₱30,000</option>
+              <option>₱30,000+</option>
             </select>
           </div>
-      
-          <div class="col-auto">
-            <button class="btn btn-success px-4">Search</button>
+
+          <div class="col-auto align-self-end">
+            <button class="btn btn-success px-4 w-100">Search</button>
           </div>
         </div>
       </div>
 
-      <div class="container py-4">
-        <h3 class="fw-bold mb-4">Check Out Our Listings!</h3>
-        <div class="row g-4">
-          <div class="col-md-4">
-            <div class="card">
-              <img src="IMG/bahay1.jpg" class="card-img-top" alt="Listing 1">
-              <div class="card-body">
-                <h5 class="card-title">Sta. Maria, Zamboanga City</h5>
-                <p><i class="fa-solid fa-location-dot me-1"></i>54+ Places &nbsp; ⭐ 4.2 (13 Reviews)</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4">
-            <div class="card">
-              <img src="IMG/bahay2.jpg" class="card-img-top" alt="Listing 2">
-              <div class="card-body">
-                <h5 class="card-title">Tumaga, Zamboanga City</h5>
-                <p><i class="fa-solid fa-location-dot me-1"></i>50+ Places &nbsp; ⭐ 4.2 (13 Reviews)</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4">
-            <div class="card">
-              <img src="IMG/bahay 3.jpg" class="card-img-top" alt="Listing 3">
-              <div class="card-body">
-                <h5 class="card-title">Divisoria, Zamboanga City</h5>
-                <p><i class="fa-solid fa-location-dot me-1"></i>60+ Places &nbsp; ⭐ 4.0 (13 Reviews)</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-      <div class="container my-5">
-        <div class="hero-section d-flex shadow">
-          <div class="left-col">
-            <div class="watch-tour">
-              <i class="bi bi-play-circle-fill"></i>
-              <div>
-                <strong>View House Tour</strong><br>
-                <small class="text-primary"><a href="videox">Watch Video →</a></small>
-              </div>
-            </div>
-      
-            <div class="mini-card">
-              <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Minimalist House">
-              <div class="mini-card-body">
-                <p><strong>Minimalist House</strong></p>
-                <p class="text-muted mb-1"><i class="bi bi-geo-alt"></i> Divisoria, Zamboanga City</p>
-                <p class="text-primary"><a href="house">View House →</a></p>
-              </div>
-            </div>
-          </div>
-    
-          <div class="right-col">
-            <h1>Renting made easy, Living made better</span></h1>
-            <p>We guarantee that the products we sell will make our customers happy</p>
-      
-            <div class="mb-4">
-              <div class="stats">10K+</div>
-              <div class="text-muted">Happy customers with our service</div>
-            </div>
-      
-            <div class="mb-4">
-              <div class="stats">24K+</div>
-              <div class="text-muted">The best property we provide</div>
-            </div>
-      
-            <div class="mb-4">
-              <div class="stats">45+</div>
-              <div class="text-muted">Company affiliated with us</div>
-            </div>
-      
-            <button class="btn btn-success">See More</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="container py-5">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          <h2 class="section-title">Popular Deals</h2>
+      <!-- Dynamic Property Listings (Carousel) -->
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h2 class="section-title fw-bold">Featured Properties</h2>
           <div class="btn-wrapper">
             <button class="arrow-btn" id="prevBtn" aria-label="Previous">
               <i class="fa fa-chevron-left"></i>
@@ -227,13 +207,14 @@
           </div>
         </div>
         <div class="row" id="propertyList">
+          <!-- Property cards will be injected here by script.js -->
         </div>
       </div>
     </section>
-    
+
     <section id="post">
       <div class="image-container2">
-        <img src="IMG/bahay cover page 2.jpg" alt="house cover page 2">
+        <img src="IMG/bahay cover page 2.jpg" alt="Interior of a modern living room">
         <div class="post-overlay-text">
          Own a <br>
          place? <br>
@@ -241,33 +222,82 @@
          world see it<br>
          <b>Post now!</b> <br>
           <button class="upload-btn">
-          <i class="fa-solid fa-arrow-up-from-bracket"></i>
+            <i class="fa-solid fa-arrow-up-from-bracket me-2"></i>List Your Property
         </button>
         </div>
       </div>
     </section>
 
+    <!-- About Us Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4 fw-bold">About RentEasy</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8 text-center">
+                    <p class="lead">RentEasy was founded with a simple mission: to make renting properties easier, safer, and more efficient for everyone involved. We connect tenants with landlords, providing a platform built on trust and transparency.</p>
+                    <p>We leverage technology to verify listings, streamline communication, and provide valuable resources for both renters and property owners. Whether you're looking for your next home or seeking reliable tenants, RentEasy is here to help.</p>
+                    <img src="IMG/logo green.png" alt="RentEasy Logo" class="mt-3" style="max-height: 60px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4 fw-bold">Get In Touch</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <p class="text-center mb-4">Have questions or need assistance? Reach out to us!</p>
+                    <form>
+                        <div class="mb-3">
+                            <label for="contactName" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="contactName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="contactEmail" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="contactEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="contactMessage" class="form-label">Message</label>
+                            <textarea class="form-control" id="contactMessage" rows="4" required></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success btn-lg">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
   </main>
 
-  <footer>
-
+  <footer class="py-4 bg-dark text-white">
+      <div class="container text-center">
+          <div class="mb-2">
+              <a href="#top" class="text-white-50 mx-2"><i class="fab fa-facebook-f"></i></a>
+              <a href="#top" class="text-white-50 mx-2"><i class="fab fa-twitter"></i></a>
+              <a href="#top" class="text-white-50 mx-2"><i class="fab fa-instagram"></i></a>
+          </div>
+          <p class="mb-0 small">© <span id="currentYear"></span> RentEasy. All Rights Reserved.</p>
+          <p class="small"><a href="#" class="text-white-50">Privacy Policy</a> | <a href="#" class="text-white-50">Terms of Service</a></p>
+      </div>
   </footer>
-  <script src="SCRIPTS/script.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+  <script src="SCRIPTS/script.js"></script>
   <script>
     function login() {
       localStorage.setItem("isLoggedIn", "true");
       checkLoginStatus();
-      location.reload();
     }
-  
+
     function checkLoginStatus() {
       const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-  
       const loginSignupButtons = document.getElementById("loginSignupButtons");
       const userMenu = document.getElementById("userMenu");
-  
+
       if (isLoggedIn) {
         loginSignupButtons.classList.add("d-none");
         userMenu.classList.remove("d-none");
@@ -276,20 +306,35 @@
         userMenu.classList.add("d-none");
       }
     }
-  
+
     window.onload = checkLoginStatus;
-  
+
     const logoutBtn = document.getElementById("logoutBtn");
     if (logoutBtn) {
-      logoutBtn.addEventListener("click", () => {
+      logoutBtn.addEventListener("click", (e) => {
+        e.preventDefault(); 
         localStorage.removeItem("isLoggedIn");
         checkLoginStatus();
-        location.reload();
+
+        location.reload(); 
       });
     }
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    document.querySelectorAll('header nav a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            if(targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
   </script>
-  
 
 </body>
-
 </html>

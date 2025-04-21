@@ -1,143 +1,213 @@
-
 const properties = [
-    {
-      name: 'The Minimalist House',
-      location: 'Sta. Maria, Zamboanga City',
-      price: '₱10,000',
-      beds: 5,
-      baths: 3,
-      size: '4.2m²',
-      images: ['https://picsum.photos/id/1018/400/200', 'https://picsum.photos/id/1022/400/200']
-    },
-    {
-      name: 'The Cozy House',
-      location: 'Divisoria, Zamboanga City',
-      price: '₱12,000',
-      beds: 6,
-      baths: '1-3',
-      size: '4.2m²',
-      images: ['https://picsum.photos/id/1015/400/200', 'https://picsum.photos/id/1016/400/200']
-    },
-    {
-      name: 'Best Starter House',
-      location: 'Tumaga, Zamboanga City',
-      price: '₱15,000',
-      beds: '4-6',
-      baths: '2-3',
-      size: '4.2m²',
-      images: ['https://picsum.photos/id/1020/400/200', 'https://picsum.photos/id/1021/400/200']
-    },
-    {
-      name: 'Family House',
-      location: 'Guiwan, Zamboanga City',
-      price: '₱8,000',
-      beds: 5,
-      baths: 2,
-      size: '3.5m²',
-      images: ['https://picsum.photos/id/1025/400/200', 'https://picsum.photos/id/1031/400/200']
-    },
-    {
-      name: 'Urban Smart Home',
-      location: 'Tetuan, Zamboanga City',
-      price: '₱14,000',
-      beds: 4,
-      baths: 2,
-      size: '3.8m²',
-      images: ['https://picsum.photos/id/1040/400/200', 'https://picsum.photos/id/1042/400/200']
-    },
-    {
-      name: 'Luxury Villa',
-      location: 'Baliwasan, Zamboanga City',
-      price: '₱25,000',
-      beds: 7,
-      baths: 4,
-      size: '5.0m²',
-      images: ['https://picsum.photos/id/1050/400/200', 'https://picsum.photos/id/1051/400/200']
-    }
-  ];
-  
-  let currentIndex = 0;
-  const cardsPerPage = 4;
-  
-  function renderProperties() {
-    const container = document.getElementById('propertyList');
-    container.innerHTML = '';
-  
-    const slice = properties.slice(currentIndex, currentIndex + cardsPerPage);
-    slice.forEach((property, index) => {
-      const card = document.createElement('div');
-      card.className = 'col-md-3 mb-4';
-  
-      const carouselId = `carousel-${currentIndex + index}`;
-  
-      card.innerHTML = `
-        <div class="card shadow-sm h-100">
-          <div id="${carouselId}" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-              ${property.images.map((img, idx) => `
-                <div class="carousel-item ${idx === 0 ? 'active' : ''}">
-                  <img src="${img}" class="d-block w-100" alt="House Image">
-                </div>
-              `).join('')}
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#${carouselId}" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon"></span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#${carouselId}" data-bs-slide="next">
-              <span class="carousel-control-next-icon"></span>
-            </button>
+  {
+    name: 'The Minimalist House',
+    location: 'Sta. Maria, Zamboanga City',
+    price: '₱10,000 / mo', // Added frequency
+    beds: 5,
+    baths: 3,
+    size: '120m²', // More realistic size
+    images: ['https://images.unsplash.com/photo-1580587771525-78b9dba3b914?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjQwNTF8MHwxfHNlYXJjaHwxfHxob3VzZXxlbnwwfHx8fDE2Nzk5MjAwMDA&ixlib=rb-4.0.3&q=80&w=400', 'https://images.unsplash.com/photo-1564013799919-d80659be60ea?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjQwNTF8MHwxfHNlYXJjaHwyfHxob3VzZXxlbnwwfHx8fDE2Nzk5MjAwMDA&ixlib=rb-4.0.3&q=80&w=400']
+  },
+  {
+    name: 'The Cozy Apartment', // Changed name
+    location: 'Divisoria, Zamboanga City',
+    price: '₱12,000 / mo',
+    beds: 2, // Adjusted details
+    baths: 1,
+    size: '65m²',
+    images: ['https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjQwNTF8MHwxfHNlYXJjaHwxfHxhcGFydG1lbnR8ZW58MHx8fHwxNjc5OTIwMjAw&ixlib=rb-4.0.3&q=80&w=400', 'https://images.unsplash.com/photo-1604999333679-b86d54738716?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjQwNTF8MHwxfHNlYXJjaHwyfHxhcGFydG1lbnR8ZW58MHx8fHwxNjc5OTIwMjAw&ixlib=rb-4.0.3&q=80&w=400']
+  },
+  {
+    name: 'Best Starter House',
+    location: 'Tumaga, Zamboanga City',
+    price: '₱15,000 / mo',
+    beds: 3, // Adjusted details
+    baths: 2,
+    size: '90m²',
+    images: ['https://images.unsplash.com/photo-1598228723793-52df1bd0a9ce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjQwNTF8MHwxfHNlYXJjaHw1fHxob3VzZXxlbnwwfHx8fDE2Nzk5MjAwMDA&ixlib=rb-4.0.3&q=80&w=400', 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjQwNTF8MHwxfHNlYXJjaHw3fHxob3VzZXxlbnwwfHx8fDE2Nzk5MjAwMDA&ixlib=rb-4.0.3&q=80&w=400']
+  },
+  {
+    name: 'Family Townhouse', // Changed name
+    location: 'Guiwan, Zamboanga City',
+    price: '₱18,000 / mo', // Adjusted price
+    beds: 4, // Adjusted details
+    baths: 2,
+    size: '110m²',
+    images: ['https://images.unsplash.com/photo-1570129477492-45c003edd2be?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjQwNTF8MHwxfHNlYXJjaHw4fHxob3VzZXxlbnwwfHx8fDE2Nzk5MjAwMDA&ixlib=rb-4.0.3&q=80&w=400', 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjQwNTF8MHwxfHNlYXJjaHwxMXx8aG91c2V8ZW58MHx8fHwxNjc5OTIwMDAw&ixlib=rb-4.0.3&q=80&w=400']
+  },
+  {
+    name: 'Urban Studio Loft', // Changed name
+    location: 'Tetuan, Zamboanga City',
+    price: '₱9,500 / mo', // Adjusted price
+    beds: 1, // Adjusted details
+    baths: 1,
+    size: '45m²',
+    images: ['https://images.unsplash.com/photo-1505691723518-36a5ac3be353?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjQwNTF8MHwxfHNlYXJjaHwzfHxhcGFydG1lbnR8ZW58MHx8fHwxNjc5OTIwMjAw&ixlib=rb-4.0.3&q=80&w=400', 'https://images.unsplash.com/photo-1536376072261-38c75010e6c9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjQwNTF8MHwxfHNlYXJjaHw5fHxhcGFydG1lbnR8ZW58MHx8fHwxNjc5OTIwMjAw&ixlib=rb-4.0.3&q=80&w=400']
+  },
+  {
+    name: 'Luxury Villa',
+    location: 'Baliwasan, Zamboanga City',
+    price: '₱45,000 / mo', // Adjusted price
+    beds: 5, // Adjusted details
+    baths: 4,
+    size: '300m²',
+    images: ['https://images.unsplash.com/photo-1613490493576-7fde63acd811?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjQwNTF8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBob3VzZXxlbnwwfHx8fDE2Nzk5MjA0MDA&ixlib=rb-4.0.3&q=80&w=400', 'https://images.unsplash.com/photo-1574362848149-11496d93a7c7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjQwNTF8MHwxfHNlYXJjaHwyfHxsdXh1cnklMjBob3VzZXxlbnwwfHx8fDE2Nzk5MjA0MDA&ixlib=rb-4.0.3&q=80&w=400']
+  },
+  // Add more properties if needed
+   {
+    name: 'Modern Downtown Condo',
+    location: 'City Proper, Zamboanga City',
+    price: '₱22,000 / mo',
+    beds: 2,
+    baths: 2,
+    size: '80m²',
+    images: ['https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjQwNTF8MHwxfHNlYXJjaHw0fHxhcGFydG1lbnR8ZW58MHx8fHwxNjc5OTIwMjAw&ixlib=rb-4.0.3&q=80&w=400', 'https://images.unsplash.com/photo-1493809842364-78817add7ffb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjQwNTF8MHwxfHNlYXJjaHw3fHxhcGFydG1lbnR8ZW58MHx8fHwxNjc5OTIwMjAw&ixlib=rb-4.0.3&q=80&w=400']
+  },
+  {
+    name: 'Quiet Suburban Home',
+    location: 'Pasonanca, Zamboanga City',
+    price: '₱16,500 / mo',
+    beds: 3,
+    baths: 2,
+    size: '105m²',
+    images: ['https://images.unsplash.com/photo-1558036117-15d82a90b9b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjQwNTF8MHwxfHNlYXJjaHwxMHx8aG91c2V8ZW58MHx8fHwxNjc5OTIwMDAw&ixlib=rb-4.0.3&q=80&w=400', 'https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjQwNTF8MHwxfHNlYXJjaHwxNHx8aG91c2V8ZW58MHx8fHwxNjc5OTIwMDAw&ixlib=rb-4.0.3&q=80&w=400']
+  }
+];
+
+let currentIndex = 0;
+// Adjust cardsPerPage based on screen size or preference
+const cardsPerPage = window.innerWidth >= 992 ? 4 : (window.innerWidth >= 768 ? 3 : 2); // Example responsive adjustment
+
+function renderProperties() {
+  const container = document.getElementById('propertyList');
+  if (!container) return; // Exit if container not found
+  container.innerHTML = ''; // Clear previous cards
+
+  // Calculate the slice end, handle wrapping around
+  const numProperties = properties.length;
+  if (numProperties === 0) return; // Exit if no properties
+
+  // Ensure currentIndex is within bounds
+   currentIndex = (currentIndex % numProperties + numProperties) % numProperties;
+
+  let propertiesToShow = [];
+  for(let i = 0; i < cardsPerPage; i++) {
+      let propIndex = (currentIndex + i) % numProperties;
+      propertiesToShow.push(properties[propIndex]);
+  }
+
+
+  propertiesToShow.forEach((property, index) => {
+    const card = document.createElement('div');
+    // Responsive column classes based on cardsPerPage logic
+    card.className = `col-lg-${12/cardsPerPage} col-md-4 col-sm-6 mb-4`; // Adjust col classes
+
+    const carouselId = `carousel-${currentIndex + index}`; // Ensure unique IDs
+
+    card.innerHTML = `
+      <div class="card shadow-sm h-100">
+        <div id="${carouselId}" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false"> <!-- Disable auto slide -->
+          <div class="carousel-inner">
+            ${property.images.map((img, idx) => `
+              <div class="carousel-item ${idx === 0 ? 'active' : ''}">
+                <img src="${img}" class="d-block w-100 card-img-top" alt="${property.name} image ${idx + 1}">
+              </div>
+            `).join('')}
           </div>
-          <div class="card-body">
-            <h6 class="text-muted mb-1">${property.price}</h6>
-            <h5 class="card-title">${property.name}</h5>
-            <p class="text-muted mb-2">${property.location}</p>
-            <div class="property-info d-flex justify-content-between">
-              <div><i class="fa fa-bed"></i> ${property.beds}</div>
-              <div><i class="fa fa-bath"></i> ${property.baths}</div>
-              <div><i class="fa fa-expand"></i> ${property.size}</div>
-            </div>
-          </div>
-          <div class="card-footer bg-transparent text-center">
-            <button class="btn btn-success w-100">View</button>
+          ${property.images.length > 1 ? `
+          <button class="carousel-control-prev" type="button" data-bs-target="#${carouselId}" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#${carouselId}" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>` : ''}
+        </div>
+        <div class="card-body d-flex flex-column"> <!-- Use flex column for footer push -->
+          <h6 class="text-muted mb-1">${property.price}</h6>
+          <h5 class="card-title">${property.name}</h5>
+          <p class="text-muted mb-2"><i class="fas fa-map-marker-alt me-1"></i>${property.location}</p>
+          <div class="property-info d-flex justify-content-between mt-auto pt-2"> <!-- mt-auto pushes this down -->
+            <span><i class="fa fa-bed"></i> ${property.beds} Beds</span>
+            <span><i class="fa fa-bath"></i> ${property.baths} Baths</span>
+            <span><i class="fa fa-expand"></i> ${property.size}</span>
           </div>
         </div>
-      `;
-      container.appendChild(card);
-    });
-  }
-  
-  document.getElementById('nextBtn').addEventListener('click', () => {
-    if (currentIndex + cardsPerPage < properties.length) {
-      currentIndex += cardsPerPage;
-    } else {
-      currentIndex = 0;
-    }
-    renderProperties();
-  });
-  
-  document.getElementById('prevBtn').addEventListener('click', () => {
-    if (currentIndex - cardsPerPage >= 0) {
-      currentIndex -= cardsPerPage;
-    } else {
-      currentIndex = properties.length - cardsPerPage;
-    }
-    renderProperties();
-  });
-  
-  renderProperties();
+        <div class="card-footer bg-transparent border-top-0 text-center pb-3"> <!-- Adjusted footer -->
+          <button class="btn btn-success w-100">View Details</button> <!-- Changed button text -->
+        </div>
+      </div>
+    `;
+    container.appendChild(card);
 
-  const navLinks = document.querySelectorAll('nav ul li a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            navLinks.forEach(link => link.classList.remove('active'));
-            this.classList.add('active');
-        });
+     // Initialize carousel for each card AFTER adding to DOM
+     const carouselElement = document.getElementById(carouselId);
+     if (carouselElement) {
+         new bootstrap.Carousel(carouselElement);
+     }
+
+  });
+}
+
+// Initial render
+ renderProperties(); // Render on load
+
+// Event Listeners for Carousel Buttons
+const nextBtn = document.getElementById('nextBtn');
+const prevBtn = document.getElementById('prevBtn');
+
+if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % properties.length; // Move index forward, wrap around
+        renderProperties();
     });
-    
-    const buttons = document.querySelectorAll('.btn-outline-primary');
-    buttons.forEach(button => {
-      button.addEventListener('click', () => {
-        buttons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-      });
+}
+
+if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + properties.length) % properties.length; // Move index backward, wrap around
+        renderProperties();
     });
+}
+
+
+// Active Nav Link highlighting based on scroll position
+const sections = document.querySelectorAll('main section[id]');
+const navLi = document.querySelectorAll('header nav ul li a');
+
+window.addEventListener('scroll', ()=> {
+    let current = '';
+    sections.forEach( section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        // Adjust threshold (e.g., 150px before section top)
+        if (pageYOffset >= (sectionTop - 150)) {
+            current = section.getAttribute('id');
+        }
+    })
+
+    navLi.forEach( a => {
+        a.classList.remove('active');
+        if (a.getAttribute('href') === `#${current}`) {
+            a.classList.add('active');
+        }
+    });
+     // Special case for top of page
+    if (pageYOffset < 400) { // If near top, highlight 'Home'
+         navLi.forEach( a => a.classList.remove('active'));
+         const homeLink = document.querySelector('header nav ul li a[href="#top"]');
+         if(homeLink) homeLink.classList.add('active');
+    }
+});
+
+
+  // Active state for filter buttons (optional, as Bootstrap handles checked state visually)
+  const filterButtons = document.querySelectorAll('.property-filters .btn-check');
+  filterButtons.forEach(button => {
+    button.addEventListener('change', () => { // Use change event for radio/checkbox
+      // Visual state handled by Bootstrap via :checked + label
+      // console.log(`Filter changed: ${button.id} is ${button.checked}`);
+      // Add actual filtering logic here if needed
+    });
+  });
