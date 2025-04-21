@@ -1,88 +1,81 @@
-/* --- Existing Styles (Keep all styles from the provided file) --- */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* Adjusted default font size slightly */
   font-size: 14px;
   font-family: 'Poppins', sans-serif;
 }
 
 body {
   scroll-behavior: smooth;
-  /* Changed default font stack */
   font-family: 'Poppins', sans-serif;
   background-color: #f8f9fa;
-  color: #333; /* Default text color */
-  line-height: 1.6; /* Improved readability */
+  color: #333;
+  line-height: 1.6;
 }
 
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 30px; /* Slightly adjusted padding */
-  background-color: rgba(255, 255, 255, 0.9); /* Slightly less transparent */
+  padding: 10px 30px;
+  background-color: rgba(255, 255, 255, 0.9);
   position: sticky;
   top: 0;
-  z-index: 1000; /* Ensure header is on top */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Softer shadow */
-  backdrop-filter: blur(5px); /* Optional: Add blur effect */
-  -webkit-backdrop-filter: blur(5px); /* Safari support */
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
-
-/* Removed header hover effect for consistency */
-/* header:hover { ... } */
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 8px; /* Reduced gap */
+  gap: 8px;
 }
 
 .logo img {
-  width: 45px; /* Slightly smaller */
+  width: 45px;
   height: 45px;
 }
 
 .logo h1 {
-  font-size: 2rem; /* Slightly smaller */
-  color: #212529; /* Darker color */
-  margin: 0; /* Removed default margin */
-  font-weight: 600; /* Medium weight */
+  font-size: 2rem;
+  color: #212529;
+  margin: 0;
+  font-weight: 600;
 }
 
 nav ul {
   list-style: none;
   display: flex;
-  gap: 15px; /* Increased gap for clarity */
-  margin: 0; /* Remove default margin */
-  padding: 0; /* Remove default padding */
+  gap: 15px;
+  margin: 0;
+  padding: 0;
 }
 
 nav ul li a {
-  padding: 8px 12px; /* Adjusted padding */
+  padding: 8px 12px;
   text-decoration: none;
-  font-weight: 500; /* Slightly lighter weight */
-  color: #495057; /* Softer color */
-  border-radius: 6px; /* Rounded corners for hover */
+  font-weight: 500;
+  color: #495057;
+  border-radius: 6px;
   transition: background-color 0.2s ease, color 0.2s ease;
-  position: relative; /* For active indicator */
+  position: relative;
   font-size: 0.95rem;
 }
-/* Remove bottom border active state, use background */
+
 nav ul li a:hover {
   color: #000;
   background-color: #e9ecef;
 }
 
 nav ul li a.active {
-    color: #ffffff; /* White text for active */
-    background-color: #77988c; /* Theme color background */
+    color: #ffffff;
+    background-color: #77988c;
     font-weight: 600;
 }
 
-/* Login/Signup Buttons */
 .login-signup {
     display: flex;
     align-items: center;
@@ -90,7 +83,7 @@ nav ul li a.active {
 }
 
 .login-signup button {
-  padding: 8px 18px; /* Consistent padding */
+  padding: 8px 18px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -98,42 +91,41 @@ nav ul li a.active {
   font-weight: 500;
 }
 
-.login-signup .btn1 { /* Login Button */
-    background-color: #f8f9fa; /* Light background */
-    border: 1px solid #dee2e6; /* Subtle border */
+.login-signup .btn1 {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
 }
 .login-signup .btn1 a {
   text-decoration: none;
-  color: #495057; /* Darker text */
+  color: #495057;
 }
 
 .login-signup .btn1:hover {
-  background-color: #e9ecef; /* Slightly darker on hover */
+  background-color: #e9ecef;
   border-color: #ced4da;
 }
 .login-signup .btn1:hover a {
     color: #212529;
 }
 
-.login-signup .btn2 { /* Sign Up Button */
-  background-color: #77988c; /* Theme color */
+.login-signup .btn2 {
+  background-color: #77988c;
   color: #fff;
 }
 .login-signup .btn2 a {
   text-decoration: none;
-  color: #fff; /* Ensure link color is white */
+  color: #fff;
 }
 
 .login-signup .btn2:hover {
-  background-color: #607d70; /* Darker theme color on hover */
+  background-color: #607d70;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Property Filters - Existing styles seem good, minor adjustments */
 .property-filters {
-  font-size: 1rem; /* Base font size */
+  font-size: 1rem;
   padding: 1.5rem 1.5rem !important;
-  border-radius: 12px; /* More rounded */
+  border-radius: 12px;
 }
 
 .property-filters .form-label {
@@ -144,18 +136,18 @@ nav ul li a.active {
 .property-filters .btn-outline-success {
   border-color: #77988c;
   color: #77988c;
-  padding: 0.5rem 1rem; /* Adjusted padding */
-  font-size: 0.95rem; /* Slightly smaller font */
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
   transition: all 0.2s ease;
   box-shadow: none;
   border-width: 1px;
 }
 
 .property-filters .btn-outline-success:hover {
-  background-color: #8aabb0; /* Lighter hover */
+  background-color: #8aabb0;
   color: #fff;
   border-color: #8aabb0;
-  /* Removed transform */
+
 }
 
 .property-filters .btn-check:checked + .btn-outline-success {
@@ -163,12 +155,12 @@ nav ul li a.active {
   color: #fff;
   border-color: #77988c;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
- /* Removed transform */
+
 }
 
 .property-filters .form-control,
 .property-filters .form-select {
-  border-radius: 8px; /* Slightly less rounded */
+  border-radius: 8px;
   font-size: 0.95rem;
   padding: 0.5rem 1rem;
   transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
@@ -177,25 +169,24 @@ nav ul li a.active {
 .property-filters .form-control:focus,
 .property-filters .form-select:focus {
   border-color: #77988c;
-  box-shadow: 0 0 0 0.2rem rgba(119, 152, 140, 0.2); /* Lighter focus shadow */
+  box-shadow: 0 0 0 0.2rem rgba(119, 152, 140, 0.2);
 }
 
-/* Hero Section ("Renting made easy") - Styles from reference are applied */
 .hero-section {
   background-color: white;
-  border-radius: 15px; /* Slightly reduced radius */
+  border-radius: 15px;
   overflow: hidden;
   display: flex;
   flex-wrap: wrap;
-  max-height: none; /* Allow natural height */
-  min-height: 550px; /* Ensure minimum height */
+  max-height: none;
+  min-height: 550px;
 }
 
 .left-col {
   position: relative;
   width: 45%;
-  min-height: 550px; /* Match parent min-height */
-  background-image: url('https://images.unsplash.com/photo-1502672023488-70e25813eb80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80'); /* Ensure URL is correct */
+  min-height: 550px;
+  background-image: url('https://images.unsplash.com/photo-1502672023488-70e25813eb80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80');
   background-size: cover;
   background-position: center;
 }
@@ -204,20 +195,20 @@ nav ul li a.active {
   position: absolute;
   top: 25px;
   left: 25px;
-  background: rgba(255, 255, 255, 0.9); /* Slightly transparent */
+  background: rgba(255, 255, 255, 0.9);
   border-radius: 10px;
   padding: 12px 20px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   display: flex;
   align-items: center;
   gap: 12px;
-  backdrop-filter: blur(3px); /* Optional blur */
+  backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
 }
 
 .watch-tour i {
-  /* Font Awesome icon color set in HTML (text-success) */
-  font-size: 28px; /* Slightly larger */
+
+  font-size: 28px;
 }
 .watch-tour strong {
     font-size: 0.95rem;
@@ -225,7 +216,7 @@ nav ul li a.active {
 .watch-tour small a {
     font-size: 0.85rem;
     text-decoration: none;
-    color: #0d6efd; /* Bootstrap primary blue */
+    color: #0d6efd;
 }
 .watch-tour small a:hover {
     text-decoration: underline;
@@ -236,10 +227,10 @@ nav ul li a.active {
   position: absolute;
   bottom: 25px;
   left: 25px;
-  background: rgba(255, 255, 255, 0.95); /* More opaque */
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 10px;
   overflow: hidden;
-  width: 260px; /* Slightly narrower */
+  width: 260px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.12);
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
@@ -247,8 +238,8 @@ nav ul li a.active {
 
 .mini-card img {
   width: 100%;
-  height: 150px; /* Fixed height */
-  object-fit: cover; /* Ensure image covers */
+  height: 150px;
+  object-fit: cover;
 }
 
 .mini-card-body {
@@ -275,16 +266,16 @@ nav ul li a.active {
 
 .right-col {
   width: 55%;
-  padding: 50px 40px; /* Adjusted padding */
+  padding: 50px 40px;
 }
 
 .right-col h1 {
-  font-weight: 600; /* Adjusted weight */
-  font-size: 2.2rem; /* Slightly larger */
+  font-weight: 600;
+  font-size: 2.2rem;
   line-height: 1.3;
 }
 .right-col .text-success {
-    color: #77988c !important; /* Ensure theme color is used */
+    color: #77988c !important;
 }
 
 .right-col p.lead {
@@ -294,30 +285,29 @@ nav ul li a.active {
 }
 
 .right-col .stats {
-  font-size: 1.8rem; /* Slightly smaller stats */
+  font-size: 1.8rem;
   color: #77988C;
-  font-weight: 600; /* Less bold */
-  min-width: 70px; /* Align text */
+  font-weight: 600;
+  min-width: 70px;
   display: inline-block;
 }
 .right-col .text-muted {
     font-size: 0.95rem;
 }
-.right-col .d-flex { /* Add spacing below stat rows */
+.right-col .d-flex {
     margin-bottom: 1.5rem !important;
 }
 
 .right-col .btn-lg {
-    padding: 10px 30px; /* Custom large button padding */
+    padding: 10px 30px;
     font-size: 1.05rem;
 }
 
 
-/* Home Section Hero Image - Styles from reference seem ok */
 .image-container {
   position: relative;
   width: 100%;
-  height: 90vh; /* Slightly less than full viewport height */
+  height: 90vh;
   overflow: hidden;
 }
 
@@ -325,57 +315,56 @@ nav ul li a.active {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.7); /* Slightly darken image */
+  filter: brightness(0.7);
 }
 
 .overlay-text {
   position: absolute;
-  top: 50%; /* Center vertically */
-  left: 8%; /* Adjust horizontal position */
+  top: 50%;
+  left: 8%;
   transform: translateY(-50%);
   color: white;
-  font-size: 3.2em; /* Adjusted size */
-  font-weight: 600; /* Medium weight */
+  font-size: 3.2em;
+  font-weight: 600;
   letter-spacing: 1px;
   line-height: 1.25;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); /* Add subtle shadow */
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
 }
 
 .overlay-text i {
-  font-size: 1.15em; /* Slightly smaller italic */
-  font-weight: 600; /* Ensure consistent weight */
+  font-size: 1.15em;
+  font-weight: 600;
 }
 
 
-/* How it Works Section - Existing styles are good */
 .how-it-works {
-  /* Padding applied via Bootstrap class py-5 */
+
   text-align: center;
-  background-color: white; /* Keep white background */
+  background-color: white;
 }
 
 .how-it-works h2 {
-  font-size: 2.2rem; /* Larger heading */
+  font-size: 2.2rem;
   color: #333;
-  margin-bottom: 40px; /* Increased spacing */
+  margin-bottom: 40px;
 }
 
 .features {
   display: flex;
   justify-content: center;
-  gap: 35px; /* Slightly increased gap */
+  gap: 35px;
   flex-wrap: wrap;
 }
 
 .feature-box {
-  background-color: #f8f9fa; /* Lighter background */
-  padding: 30px 25px; /* Increased padding */
+  background-color: #f8f9fa;
+  padding: 30px 25px;
   border-radius: 10px;
-  width: 280px; /* Slightly wider */
+  width: 280px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   text-align: center;
-  border: 1px solid #eee; /* Subtle border */
+  border: 1px solid #eee;
 }
 
 .feature-box:hover {
@@ -384,18 +373,18 @@ nav ul li a.active {
 }
 
 .feature-box .icon {
-  font-size: 32px; /* Slightly smaller icon */
+  font-size: 32px;
   margin-bottom: 18px;
-  background-color: #e2e8f0; /* Neutral background */
-  color: #4a5568; /* Darker icon color */
+  background-color: #e2e8f0;
+  color: #4a5568;
   border-radius: 8px;
   padding: 12px;
   display: inline-block;
-  line-height: 1; /* Fix potential line height issues */
+  line-height: 1;
 }
 
 .feature-box h3 {
-  font-size: 1.25rem; /* Slightly larger heading */
+  font-size: 1.25rem;
   color: #2d3748;
   margin-bottom: 10px;
   font-weight: 600;
@@ -403,16 +392,15 @@ nav ul li a.active {
 
 .feature-box p {
   font-size: 0.9rem;
-  color: #718096; /* Softer text color */
+  color: #718096;
   line-height: 1.5;
 }
 
 
-/* Post a Property Section - Styles from reference seem ok */
 .image-container2 {
   position: relative;
   width: 100%;
-  height: 85vh; /* Adjusted height */
+  height: 85vh;
   overflow: hidden;
 }
 
@@ -420,74 +408,73 @@ nav ul li a.active {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.6); /* Darken image more */
+  filter: brightness(0.6);
 }
 
 .post-overlay-text {
   position: absolute;
-  top: 50%; /* Centered */
-  left: 50%; /* Centered */
-  transform: translate(-50%, -50%); /* Precise centering */
-  opacity: 0.9; /* Slightly more opaque */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.9;
   color: white;
-  font-size: 2.5rem; /* Adjusted size */
+  font-size: 2.5rem;
   font-weight: 400;
   letter-spacing: 1px;
   line-height: 1.3;
-  font-family: "Poppins", sans-serif; /* Consistent font */
-  text-align: center; /* Center align text */
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6); /* Enhance readability */
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
 }
 
 .post-overlay-text b {
-  font-size: 1em; /* Make bold text same size as regular */
-  font-weight: 700; /* Bold weight */
+  font-size: 1em;
+  font-weight: 700;
   font-family: "Poppins", sans-serif;
-  display: block; /* Make bold text appear on new line */
+  display: block;
   margin-top: 5px;
 }
 
 .upload-btn {
-  background-color: #77988c; /* Theme color */
+  background-color: #77988c;
   border: none;
   color: white;
-  padding: 12px 35px; /* Adjusted padding */
+  padding: 12px 35px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 1rem; /* Adjusted size */
+  font-size: 1rem;
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.1s ease;
-  /* Removed margin-left, centered container instead */
-  margin-top: 20px; /* Increased top margin */
+
+  margin-top: 20px;
   font-weight: 500;
 }
 
 .upload-btn:hover {
-  background-color: #607d70; /* Darker shade on hover */
+  background-color: #607d70;
 }
 
 .upload-btn:active {
-  background-color: #50685c; /* Even darker when clicked */
+  background-color: #50685c;
   transform: scale(0.98);
 }
 
-/* General Card Styling (for property carousel) */
 .card {
-    border: 1px solid #e9ecef; /* Lighter border */
+    border: 1px solid #e9ecef;
     transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 .card:hover {
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08) !important; /* Enhanced hover shadow */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08) !important;
     transform: translateY(-3px);
 }
 
 .card img.card-img-top,
 .card .carousel-item img {
-  height: 220px; /* Slightly taller images */
+  height: 220px;
   object-fit: cover;
-  border-top-left-radius: calc(0.375rem - 1px); /* Match card radius */
+  border-top-left-radius: calc(0.375rem - 1px);
   border-top-right-radius: calc(0.375rem - 1px);
 }
 .card .carousel-inner {
@@ -496,7 +483,7 @@ nav ul li a.active {
 }
 
 .card-body {
-    padding: 1rem 1.1rem; /* Slightly more padding */
+    padding: 1rem 1.1rem;
 }
 .card-title {
     font-weight: 600;
@@ -507,28 +494,28 @@ nav ul li a.active {
     font-size: 0.85rem;
     margin-bottom: 0.5rem;
 }
-.card-body h6.text-muted { /* Price */
+.card-body h6.text-muted {
     font-weight: 600;
-    color: #77988c !important; /* Theme color for price */
+    color: #77988c !important;
     font-size: 1rem;
 }
 
 .property-info {
     font-size: 0.85rem;
-    color: #6c757d; /* Standard muted color */
+    color: #6c757d;
     padding-top: 0.5rem;
     border-top: 1px solid #eee;
     margin-top: 0.75rem;
 }
 .property-info i {
   margin-right: 5px;
-  color: #77988c; /* Theme color for icons */
+  color: #77988c;
 }
 
 .card-footer {
-    background-color: #fff !important; /* Ensure white footer */
-    border-top: none; /* Remove top border */
-    padding: 0.75rem 1.1rem 1rem; /* Adjust padding */
+    background-color: #fff !important;
+    border-top: none;
+    padding: 0.75rem 1.1rem 1rem;
 }
 .card-footer .btn-success {
     padding: 0.5rem 1rem;
@@ -536,17 +523,16 @@ nav ul li a.active {
     font-weight: 500;
 }
 
-/* Carousel Controls Styling */
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-    background-color: rgba(0, 0, 0, 0.4); /* Darker background for icons */
+    background-color: rgba(0, 0, 0, 0.4);
     border-radius: 50%;
     width: 2.2rem;
     height: 2.2rem;
     background-size: 50% 50%;
 }
 .carousel-control-prev, .carousel-control-next {
-    opacity: 0.7; /* Make controls slightly more visible */
+    opacity: 0.7;
     transition: opacity 0.2s ease;
 }
 .carousel-control-prev:hover, .carousel-control-next:hover {
@@ -554,9 +540,8 @@ nav ul li a.active {
 }
 
 
-/* Arrow Buttons for Property Carousel */
 .arrow-btn {
-  width: 38px; /* Slightly smaller */
+  width: 38px;
   height: 38px;
   border-radius: 50%;
   display: flex;
@@ -566,7 +551,7 @@ nav ul li a.active {
   border: 1px solid #ced4da;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
   transition: all 0.2s ease;
-  color: #495057; /* Icon color */
+  color: #495057;
 }
 
 .arrow-btn:hover {
@@ -579,31 +564,29 @@ nav ul li a.active {
 
 .btn-wrapper {
   display: flex;
-  gap: 12px; /* Adjusted gap */
-  /* margin-bottom removed, handled by parent container */
+  gap: 12px;
+
 }
 
-/* Section Title Styling */
 .section-title {
-  font-weight: 600; /* Adjusted weight */
-  font-size: 1.8rem; /* Adjusted size */
-  margin-bottom: 0; /* Reset margin, handled by parent */
+  font-weight: 600;
+  font-size: 1.8rem;
+  margin-bottom: 0;
   color: #343a40;
 }
 
-/* User Menu Dropdown */
 .profile-icon {
-  width: 32px; /* Slightly larger */
+  width: 32px;
   height: 32px;
   object-fit: cover;
   border-radius: 50%;
-  border: 1px solid #eee; /* Subtle border */
+  border: 1px solid #eee;
 }
 
-.user-menu .btn-outline-success { /* Style dropdown toggle */
+.user-menu .btn-outline-success {
     border-color: #77988c;
     color: #77988c;
-    padding: 5px 10px; /* Adjust padding */
+    padding: 5px 10px;
 }
 .user-menu .btn-outline-success:hover,
 .user-menu .btn-outline-success:focus {
@@ -612,37 +595,34 @@ nav ul li a.active {
 }
 
 .dropdown-menu {
-  min-width: 160px; /* Wider dropdown */
-  padding: 8px 0; /* Adjust padding */
+  min-width: 160px;
+  padding: 8px 0;
   background-color: white;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  border: 1px solid #eee; /* Add border */
-  border-radius: 8px; /* Rounded corners */
+  border: 1px solid #eee;
+  border-radius: 8px;
 }
 .dropdown-item {
-    padding: 8px 15px; /* Adjust item padding */
+    padding: 8px 15px;
     font-size: 0.9rem;
     color: #495057;
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 .dropdown-item:hover {
-    background-color: #f1f3f5; /* Light hover */
+    background-color: #f1f3f5;
     color: #212529;
 }
 .dropdown-item:active {
-    background-color: #77988c; /* Theme color active */
+    background-color: #77988c;
     color: #fff;
 }
 .dropdown-divider {
-    margin: 6px 0; /* Adjust divider margin */
+    margin: 6px 0;
 }
 
 
-/* --- New Styles for Added Sections --- */
-
-/* About Us Section */
 #about {
-    background-color: #fff; /* White background */
+    background-color: #fff;
 }
 #about .lead {
     color: #555;
@@ -652,9 +632,8 @@ nav ul li a.active {
     color: #666;
 }
 
-/* Contact Section */
 #contact {
-    background-color: #f8f9fa; /* Light background */
+    background-color: #f8f9fa;
 }
 #contact .form-control {
     border-radius: 8px;
@@ -669,46 +648,44 @@ nav ul li a.active {
     font-size: 1.05rem;
 }
 
-/* Footer */
 footer {
-    background-color: #343a40; /* Dark background */
-    color: #adb5bd; /* Lighter text */
-    padding: 25px 0; /* Reduced padding */
+    background-color: #343a40;
+    color: #adb5bd;
+    padding: 25px 0;
 }
 footer a {
-    color: #ced4da; /* Even lighter link color */
+    color: #ced4da;
     text-decoration: none;
     transition: color 0.2s ease;
 }
 footer a:hover {
     color: #fff;
-    text-decoration: none; /* No underline on hover */
+    text-decoration: none;
 }
-footer .fab { /* Social icons */
+footer .fab {
     font-size: 1.3rem;
 }
 footer p {
-    margin-bottom: 0.3rem; /* Reduced margin */
-    font-size: 0.85rem; /* Smaller font */
+    margin-bottom: 0.3rem;
+    font-size: 0.85rem;
 }
 
 
-/* Responsive Adjustments */
 @media (max-width: 992px) {
     .hero-section {
         flex-direction: column;
-        min-height: auto; /* Reset min-height */
+        min-height: auto;
     }
     .left-col, .right-col {
         width: 100%;
-        min-height: 400px; /* Adjust min-height for smaller screens */
+        min-height: 400px;
     }
     .right-col {
-        padding: 40px 30px; /* Adjust padding */
+        padding: 40px 30px;
         min-height: auto;
     }
     .left-col {
-        min-height: 350px; /* Image area height */
+        min-height: 350px;
     }
     .overlay-text {
         font-size: 2.5em;
@@ -716,7 +693,7 @@ footer p {
     }
     .post-overlay-text {
         font-size: 2rem;
-        width: 90%; /* Ensure text wraps */
+        width: 90%;
     }
     header {
         padding: 10px 15px;
@@ -743,36 +720,36 @@ footer p {
 @media (max-width: 768px) {
   header {
     flex-direction: column;
-    align-items: flex-start; /* Align items left */
+    align-items: flex-start;
     padding: 15px;
   }
   .logo {
-      margin-bottom: 10px; /* Space below logo */
+      margin-bottom: 10px;
   }
   nav {
       width: 100%;
-      margin-bottom: 10px; /* Space below nav */
+      margin-bottom: 10px;
   }
   nav ul {
-    justify-content: space-around; /* Distribute nav items */
+    justify-content: space-around;
     gap: 5px;
-    flex-wrap: wrap; /* Allow wrapping on very small screens */
+    flex-wrap: wrap;
   }
   nav ul li a {
       font-size: 0.8rem;
       padding: 5px 6px;
   }
   .login-signup, .user-menu {
-      margin-left: 0; /* Align left */
+      margin-left: 0;
       margin-top: 5px;
       width: 100%;
-      justify-content: flex-end; /* Push buttons/menu right */
+      justify-content: flex-end;
   }
 
   .overlay-text {
     font-size: 2em;
     left: 5%;
-    width: 80%; /* Prevent text overflow */
+    width: 80%;
   }
   .post-overlay-text {
     font-size: 1.8rem;
@@ -789,9 +766,9 @@ footer p {
   }
   .feature-box {
       width: 90%;
-      max-width: 320px; /* Max width for feature boxes */
+      max-width: 320px;
   }
-  .property-filters .row > div { /* Stack filters vertically */
+  .property-filters .row > div {
       width: 100%;
       margin-bottom: 10px;
   }
@@ -800,7 +777,7 @@ footer p {
       display: flex;
   }
    .property-filters .btn-group label {
-      flex-grow: 1; /* Make buttons fill width */
+      flex-grow: 1;
   }
    .property-filters .col-auto.align-self-end {
       margin-top: 10px;
@@ -834,7 +811,7 @@ footer p {
         min-height: 280px;
     }
      .mini-card {
-        width: 200px; /* Smaller card */
+        width: 200px;
         bottom: 15px;
         left: 15px;
     }
