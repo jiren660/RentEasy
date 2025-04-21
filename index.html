@@ -199,6 +199,56 @@
         <div class="row" id="propertyList">
         </div>
       </div>
+
+<div class="modal fade" id="propertyDetailModal" tabindex="-1" aria-labelledby="propertyDetailModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalPropertyName">Property Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="modalPropertyCarousel" class="carousel slide mb-3" data-bs-ride="carousel">
+          <div class="carousel-inner" id="modalCarouselInner">
+          
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#modalPropertyCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#modalPropertyCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+
+        <h6 class="text-success fw-bold" id="modalPropertyPrice"></h6>
+        <p class="text-muted mb-2"><i class="fas fa-map-marker-alt me-1"></i><span id="modalPropertyLocation"></span></p>
+        <hr>
+        <div class="row mb-3">
+            <div class="col-4 text-center">
+                <i class="fa fa-bed fa-lg mb-1"></i><br><span id="modalPropertyBeds"></span> Beds
+            </div>
+            <div class="col-4 text-center">
+                <i class="fa fa-bath fa-lg mb-1"></i><br><span id="modalPropertyBaths"></span> Baths
+            </div>
+            <div class="col-4 text-center">
+                 <i class="fa fa-expand fa-lg mb-1"></i><br><span id="modalPropertySize"></span>
+            </div>
+        </div>
+        <hr>
+        <h5>Description</h5>
+        <p id="modalPropertyDescription">Detailed description about the property, features, amenities, and neighborhood could go here. (Currently using placeholder text)</p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success">Contact Landlord</button>
+      </div>
+    </div>
+  </div>
+</div>
+
     </section>
 
     <section id="post">
