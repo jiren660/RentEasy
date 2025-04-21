@@ -1,35 +1,32 @@
-$(document).ready(function () {
-    $('#loginForm').on('submit', function (e) {
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("form");
+    const errorMsg = document.getElementById("errorMsg");
+  
+    function showError(message) {
+      errorMsg.textContent = message;
+      errorMsg.classList.add("vibrate");
+      setTimeout(() => errorMsg.classList.remove("vibrate"), 300);
+    }
+  
+    form.addEventListener("submit", function (e) {
       e.preventDefault();
   
-      const email = $('#email').val();
-      const password = $('#password').val();
+      const email = form.querySelector('input[placeholder="Email Address"]').value.trim();
+      const password = form.querySelector('input[placeholder="Password"]').value;
   
-      if (email === "user@gmail.com" && password === "user123") {
-        
-        localStorage.setItem("isLoggedIn", "true");
+      const users = JSON.parse(localStorage.getItem("users") || "[]");
   
-        
-        const popup = `
-          <div class="login-popup">
-            <div class="popup-content">
-              <h2>Login Successful!</h2>
-              <p>Redirecting to the homepage...</p>
-            </div>
-          </div>
-        `;
-        $('body').append(popup);
+      const user = users.find(u => u.email === email && u.password === password);
   
-        
-        $('body').css('pointer-events', 'none');
-  
-        
-        setTimeout(function () {
-          window.location.href = "index.html"; 
-        }, 2000);
-      } else {
-        alert("Invalid email or password. Please try again.");
+      if (!user) {
+        showError("Invalid email or password.");
+        return;
       }
+  
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("currentUser", JSON.stringify({ email: user.email, fullName: user.fullName }));
+  
+      window.location.href = "index.html";
     });
   });
   
