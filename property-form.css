@@ -30,3 +30,55 @@ label {
   color: #495057;
 }
 
+input[type="text"],
+input[type="number"],
+input[type="file"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #77988c;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #000;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.amenities label {
+  display: inline-block;
+  margin-right: 15px;
+  color: #495057;
+  margin-top: 8px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px 20px;
+  width: 100%;
+  background-color: #77988c;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #5c746e;
+  color: #fff;
+}
+
+#successMessage {
+  margin-top: 20px;
+  text-align: center;
+  color: green;
+  font-weight: bold;
+}
+
+.hidden {
+  display: none;
+}
