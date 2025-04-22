@@ -199,7 +199,7 @@ function showPropertyDetails(index) {
     modalCarouselInstance.dispose();
   }
   if (property.images.length > 0 && typeof bootstrap !== 'undefined') {
-    modalCarouselInstance = new bootstrap.Carousel(modalCarouselElement, { interval: false });
+    modalCarouselInstance = new bootstrap.Carousel(modalCarouselElement, { interval: 10000 });
   }
 
   detailModalInstance.show();
