@@ -10,23 +10,9 @@ document.addEventListener("DOMContentLoaded", function () {
   
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-  
-      const email = form.querySelector('input[placeholder="Email Address"]').value.trim();
-      const password = form.querySelector('input[placeholder="Password"]').value;
-  
-      const users = JSON.parse(localStorage.getItem("users") || "[]");
-  
-      const user = users.find(u => u.email === email && u.password === password);
-  
-      if (!user) {
-        showError("Invalid email or password.");
-        return;
-      }
-  
-      localStorage.setItem("isLoggedIn", "true");
-      localStorage.setItem("currentUser", JSON.stringify({ email: user.email, fullName: user.fullName }));
-  
-      window.location.href = "index.html";
-    });
-  });
+      errorMsg.textContent = "";
+
+       const email = form.querySelector('input[placeholder="Email Address"]').value.trim();
+        const password = form.querySelector('input[placeholder="Password"]').value;
+
   
