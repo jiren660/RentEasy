@@ -12,7 +12,21 @@ document.addEventListener("DOMContentLoaded", function () {
       e.preventDefault();
       errorMsg.textContent = "";
 
-       const email = form.querySelector('input[placeholder="Email Address"]').value.trim();
-        const password = form.querySelector('input[placeholder="Password"]').value;
+      const email = form.querySelector('input[placeholder="Email Address"]').value.trim();
+      const password = form.querySelector('input[placeholder="Password"]').value;
+
+      if (!email || !password) {
+        showError("Please enter both email and password.");
+        return;
+    }
+
+    const users = JSON.parse(localStorage.getItem("users") || "[]");
+
+    const user = users.find(u => u.email === email && u.password === password);
+
+        if (!user) {
+            showError("Invalid email or password.");
+            return;
+        }
 
   
