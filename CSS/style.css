@@ -625,79 +625,103 @@ nav ul li a.active {
 /* enhanced the about section css */
 /* About Section Styling */
 #about {
-  background-color: #fff;
-  position: relative;
-  padding: 80px 0;
+    background-color: #fff;
+    position: relative;
+    padding: 80px 0;
 }
 
 #about h2 {
-  font-size: 2.8rem;
-  font-weight: 700;
-  color: #283933;
-  position: relative;
-  padding-left: 20px;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #283933;
+    position: relative;
+    padding-left: 20px;
+    line-height: 1.2;
 }
 
 #about h2::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 4px;
-  height: 100%;
-  background-color: #77988c;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #77988c;
 }
 
 .about-content p {
-  color: #495057;
-  font-size: 1.1rem;
-  line-height: 1.8;
-  margin-bottom: 2rem;
+    color: #495057;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+.btn-primary {
+    background-color: #77988c;
+    border: none;
+    padding: 12px 30px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #607d70;
 }
 
 .services-list {
-  padding-left: 2rem;
+    padding-left: 2rem;
 }
 
 .services-list h3 {
-  color: #77988c;
-  font-size: 1.8rem;
-  margin-bottom: 2rem;
+    color: #77988c;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
 }
 
 .service-item {
-  margin-bottom: 2rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
 }
 
-.service-item i {
-  color: #77988c;
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+.service-icon {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(119, 152, 140, 0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.service-item h4 {
-  color: #283933;
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
+.service-icon i {
+    color: #77988c;
+    font-size: 1.5rem;
 }
 
-.service-item p {
-  color: #495057;
-  font-size: 1rem;
-  line-height: 1.6;
+.service-content h4 {
+    color: #283933;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
 }
 
-
+.service-content p {
+    color: #495057;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+}
 
 @media (max-width: 768px) {
-  #about h2 {
-      font-size: 2.2rem;
-  }
-  
-  .services-list {
-      padding-left: 0;
-      margin-top: 3rem;
-  }
+    #about h2 {
+        font-size: 2.2rem;
+    }
+    
+    .services-list {
+        padding-left: 0;
+        margin-top: 3rem;
+    }
 }
 
 
