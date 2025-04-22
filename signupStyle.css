@@ -18,7 +18,7 @@
   
   .left-image {
     flex: 0.6;
-    background: url('IMG/bahay\ cover\ page.jpg') center center/cover no-repeat;
+    background: url("IMG/bahay%20cover%20page.jpg") center center/cover no-repeat;
   }
 
   .logo {
@@ -141,6 +141,23 @@
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+  
+
+  @media (max-width: 768px) {
+    .signup {
+      flex-direction: column;
+    }
+  
+    .left-image {
+      flex: none;
+      height: 40vh;
+    }
+  
+    .form {
+      flex: none;
+      padding: 20px;
     }
   }
   
