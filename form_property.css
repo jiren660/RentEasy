@@ -1,0 +1,78 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fffafa;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .form-container {
+    background-color: white;
+    width: 90%;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgb(245, 239, 239);
+  }
+  
+  h2 {
+    text-align: center;
+    color: #000;
+  }
+  
+  label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+    color: #000;
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  input[type="file"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #77988c;
+    border-radius: 8px;
+  }
+  
+  textarea {
+    resize: vertical;
+  }
+  
+  .amenities label {
+    display: inline-block;
+    margin-right: 15px;
+    color: #555;
+  }
+  
+  button {
+    margin-top: 20px;
+    padding: 12px 20px;
+    width: 100%;
+    background-color: #77988c;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #77988c;
+    color: #333;
+  }
+  
+  #successMessage {
+    margin-top: 20px;
+    text-align: center;
+    color: green;
+    font-weight: bold;
+  }
+  
+  .hidden {
+    display: none;
+  }
