@@ -136,6 +136,23 @@ document.addEventListener('click', function(e) {
   }
 });
 
+function filterProperties() {
+  const searchTerm = document.getElementById('locationInput').value.toLowerCase();
+  const selectedBarangay = document.getElementById('barangaySelect').value;
+  const propertyType = document.querySelector('input[name="propertyType"]:checked').id;
+  const priceRange = document.getElementById('priceRange').value;
+
+  const filteredProperties = properties.filter(property => {
+    const matchesSearch = property.name.toLowerCase().includes(searchTerm) || 
+                         property.location.toLowerCase().includes(searchTerm);
+    const matchesBarangay = !selectedBarangay || property.location.includes(selectedBarangay);
+
+    return matchesSearch && matchesBarangay;
+  });
+
+  renderFilteredProperties(filteredProperties);
+}
+
 
 function renderProperties() {
   const container = document.getElementById('propertyList');
