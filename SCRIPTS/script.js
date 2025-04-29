@@ -153,6 +153,13 @@ function filterProperties() {
   renderFilteredProperties(filteredProperties);
 }
 
+document.getElementById('locationInput')?.addEventListener('input', filterProperties);
+document.getElementById('barangaySelect')?.addEventListener('change', filterProperties);
+document.querySelectorAll('input[name="propertyType"]').forEach(input => {
+  input?.addEventListener('change', filterProperties);
+});
+document.getElementById('priceRange')?.addEventListener('change', filterProperties);
+
 
 function renderProperties() {
   const container = document.getElementById('propertyList');
