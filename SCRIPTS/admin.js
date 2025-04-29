@@ -276,3 +276,150 @@ document.addEventListener("DOMContentLoaded", function () {
     container.appendChild(table);
   }
 
+  const modal = new bootstrap.Modal(document.getElementById("modal"));
+  const modalTitle = document.getElementById("modalTitle");
+  const modalBody = document.getElementById("modalBody");
+  const modalFooter = document.getElementById("modalFooter");
+
+  function approveListing(listingId) {
+    if (confirm('Are you sure you want to approve this listing?')) {
+      const listing = listings.find(l => l.id === listingId);
+      if (listing) {
+        listing.status = 'Active';
+        renderListings();
+      }
+    }
+  }
+
+  function deleteListing(listingId) {
+    if (confirm('Are you sure you want to delete this listing?')) {
+      listings = listings.filter(l => l.id !== listingId);
+      renderListings();
+    }
+  }
+
+  function openListingModal(listingId) {
+    const listing = listings.find(l => l.id === listingId);
+    if (!listing) return;
+
+    modalTitle.textContent = "Listing Details";
+    modalBody.innerHTML = `
+      <div class="listing-details">
+        <p><strong>Title:</strong> ${listing.title}</p>
+        <p><strong>Price:</strong> ${listing.price}</p>
+        <p><strong>Location:</strong> ${listing.location}</p>
+        <p><strong>Status:</strong> ${listing.status}</p>
+        <p><strong>Description:</strong> ${listing.description}</p>
+      </div>
+      <hr>
+      <div class="mb-3">
+        <label for="listingStatus" class="form-label">Change Status</label>
+        <select class="form-select" id="listingStatus">
+          <option value="Active" ${listing.status === "Active" ? "selected" : ""}>Active</option>
+          <option value="Pending" ${listing.status === "Pending" ? "selected" : ""}>Pending</option>
+          <option value="Inactive" ${listing.status === "Inactive" ? "selected" : ""}>Inactive</option>
+        </select>
+      </div>
+    `;
+    modalFooter.innerHTML = `
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-primary" id="saveListingBtn">Save Changes</button>
+    `;
+    document.getElementById("saveListingBtn").onclick = () => {
+      listing.status = document.getElementById("listingStatus").value;
+      renderListings();
+      modal.hide();
+    };
+    modal.show();
+  }
+
+  function openUserModal(userId) {
+    const user = users.find(u => u.id === userId);
+    if (!user) return;
+
+    modalTitle.textContent = "User Details";
+    modalBody.innerHTML = `
+      <div class="user-details">
+        <p><strong>Name:</strong> ${user.name}</p>
+        <p><strong>Role:</strong> ${user.role}</p>
+        <p><strong>Email:</strong> ${user.email}</p>
+        <p><strong>Phone:</strong> ${user.phone}</p>
+        <p><strong>Address:</strong> ${user.address}</p>
+      </div>
+      <hr>
+      <div class="mb-3">
+        <label for="userRole" class="form-label">Change Role</label>
+        <select class="form-select" id="userRole">
+          <option value="Renter" ${user.role === "Renter" ? "selected" : ""}>Renter</option>
+          <option value="Landlord" ${user.role === "Landlord" ? "selected" : ""}>Landlord</option>
+          <option value="Admin" ${user.role === "Admin" ? "selected" : ""}>Admin</option>
+        </select>
+      </div>
+    `;
+    modalFooter.innerHTML = `
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-primary" id="saveUserBtn">Save Changes</button>
+    `;
+    document.getElementById("saveUserBtn").onclick = () => {
+      user.role = document.getElementById("userRole").value;
+      renderUsers();
+      modal.hide();
+    };
+    modal.show();
+  }
+
+  document.getElementById("addListingBtn")?.addEventListener("click", () => {
+    modalTitle.textContent = "Add New Listing";
+    modalBody.innerHTML = `
+      <form id="addListingForm">
+        <div class="mb-3">
+          <label for="listingTitle" class="form-label">Title</label>
+          <input type="text" class="form-control" id="listingTitle" required />
+        </div>
+        <div class="mb-3">
+          <label for="listingPrice" class="form-label">Price</label>
+          <input type="text" class="form-control" id="listingPrice" required />
+        </div>
+        <div class="mb-3">
+          <label for="listingLocation" class="form-label">Location</label>
+          <input type="text" class="form-control" id="listingLocation" required />
+        </div>
+        <div class="mb-3">
+          <label for="listingDescription" class="form-label">Description</label>
+          <textarea class="form-control" id="listingDescription" rows="3" required></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="listingStatusNew" class="form-label">Status</label>
+          <select class="form-select" id="listingStatusNew" required>
+            <option value="Active">Active</option>
+            <option value="Pending" selected>Pending</option>
+            <option value="Inactive">Inactive</option>
+          </select>
+        </div>
+      </form>
+    `;
+    modalFooter.innerHTML = `
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+      <button type="submit" form="addListingForm" class="btn btn-primary">Add Listing</button>
+    `;
+    document.getElementById("addListingForm").onsubmit = (e) => {
+      e.preventDefault();
+      const newListing = {
+        id: Date.now(),
+        title: document.getElementById("listingTitle").value.trim(),
+        price: document.getElementById("listingPrice").value.trim(),
+        location: document.getElementById("listingLocation").value.trim(),
+        description: document.getElementById("listingDescription").value.trim(),
+        status: document.getElementById("listingStatusNew").value
+      };
+      listings.push(newListing);
+      renderListings();
+      modal.hide();
+    };
+    modal.show();
+  });
+
+  renderListings();
+  renderUsers();
+});
+
