@@ -107,6 +107,16 @@ document.addEventListener('click', function(e) {
   }
 });
 
+document.getElementById('submitBooking')?.addEventListener('click', function() {
+  const form = document.getElementById('bookingForm');
+  if (form.checkValidity()) {
+    alert('Booking request submitted successfully!');
+    bookingModalInstance.hide();
+  } else {
+    form.reportValidity();
+  }
+});
+
 
 function renderProperties() {
   const container = document.getElementById('propertyList');
