@@ -431,4 +431,79 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="modal fade" id="addMaintenanceModal" tabindex="-1" aria-labelledby="addMaintenanceModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form id="addMaintenanceForm">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="addMaintenanceModalLabel">Add Maintenance Request</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                     <div class="mb-3">
+                                        <label for="addMaintenanceProperty" class="form-label">Property</label>
+                                        <select class="form-select" id="addMaintenanceProperty" required>
+                                            <option value="" selected disabled>Select Property...</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="addMaintenanceUnit" class="form-label">Unit Number</label>
+                                        <input type="text" class="form-control" id="addMaintenanceUnit" required>
+                                    </div>
+                                     <div class="mb-3">
+                                        <label for="addMaintenanceIssue" class="form-label">Issue Description</label>
+                                        <textarea class="form-control" id="addMaintenanceIssue" rows="3" required></textarea>
+                                    </div>
+                                     <div class="mb-3">
+                                        <label for="addMaintenanceStatus" class="form-label">Initial Status</label>
+                                        <select class="form-select" id="addMaintenanceStatus" required>
+                                            <option value="Pending" selected>Pending</option>
+                                            <option value="In Progress">In Progress</option>
+                                            <option value="Completed">Completed</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Add Request</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="modal fade" id="editMaintenanceModal" tabindex="-1" aria-labelledby="editMaintenanceModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form id="editMaintenanceForm">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editMaintenanceModalLabel">Edit Maintenance Request</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                 <div class="modal-body">
+                                    <input type="hidden" id="editMaintenanceId">
+                                    <p><strong>Property:</strong> <span id="editMaintenancePropertyDisplay"></span></p>
+                                    <p><strong>Unit:</strong> <span id="editMaintenanceUnitDisplay"></span></p>
+                                     <div class="mb-3">
+                                        <label for="editMaintenanceIssue" class="form-label">Issue Description</label>
+                                        <textarea class="form-control" id="editMaintenanceIssue" rows="3" required></textarea>
+                                    </div>
+                                     <div class="mb-3">
+                                        <label for="editMaintenanceStatus" class="form-label">Status</label>
+                                        <select class="form-select" id="editMaintenanceStatus" required>
+                                            <option value="Pending">Pending</option>
+                                            <option value="In Progress">In Progress</option>
+                                            <option value="Completed">Completed</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             
