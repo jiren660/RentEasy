@@ -134,3 +134,145 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
+
+  let listings = [
+    { 
+      id: 1, 
+      title: "Cozy Apartment Downtown", 
+      status: "Active",
+      price: "$1200/month",
+      location: "Downtown",
+      description: "Modern 1BR apartment"
+    },
+    { 
+      id: 2, 
+      title: "Spacious House in Suburbs", 
+      status: "Pending",
+      price: "$2500/month",
+      location: "Suburbs",
+      description: "3BR family home"
+    }
+  ];
+
+  let users = [
+    { 
+      id: 1, 
+      name: "John Doe", 
+      role: "Renter",
+      email: "john@example.com",
+      phone: "555-0123",
+      address: "123 Main St"
+    },
+    { 
+      id: 2, 
+      name: "Jane Smith", 
+      role: "Landlord",
+      email: "jane@example.com",
+      phone: "555-0124",
+      address: "456 Oak Ave"
+    }
+  ];
+
+  let messages = [
+    { id: 1, from: "John Doe", content: "Is the apartment still available?" },
+    { id: 2, from: "Jane Smith", content: "Please update your listing." }
+  ];
+
+  let reviews = [
+    { id: 1, user: "John Doe", rating: 5, comment: "Great place!" },
+    { id: 2, user: "Jane Smith", rating: 4, comment: "Good communication." }
+  ];
+
+  function renderListings() {
+    const container = document.getElementById("listingsList");
+    container.innerHTML = "";
+    
+    if (listings.length === 0) {
+      container.innerHTML = "<p>No listings available.</p>";
+      return;
+    }
+    
+    const table = document.createElement("table");
+    table.className = "table table-hover";
+    table.innerHTML = `
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Price</th>
+          <th>Location</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    `;
+    
+    const tbody = table.querySelector("tbody");
+    
+    listings.forEach((listing) => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${listing.title}</td>
+        <td>${listing.price}</td>
+        <td>${listing.location}</td>
+        <td><span class="badge rounded-pill bg-${listing.status === 'Active' ? 'success' : 'warning'}">${listing.status}</span></td>
+        <td>
+          <div class="btn-group btn-group-sm">
+            <button class="btn btn-primary" onclick="openListingModal(${listing.id})">View</button>
+            ${listing.status === 'Pending' ? 
+              `<button class="btn btn-success" onclick="approveListing(${listing.id})">Approve</button>` : ''}
+            <button class="btn btn-danger" onclick="deleteListing(${listing.id})">Delete</button>
+          </div>
+        </td>
+      `;
+      tbody.appendChild(row);
+    });
+    
+    container.appendChild(table);
+  }
+
+  function renderUsers() {
+    const container = document.getElementById("usersList");
+    container.innerHTML = "";
+    
+    if (users.length === 0) {
+      container.innerHTML = "<p>No users available.</p>";
+      return;
+    }
+    
+    const table = document.createElement("table");
+    table.className = "table table-hover";
+    table.innerHTML = `
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Role</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    `;
+    
+    const tbody = table.querySelector("tbody");
+    
+    users.forEach((user) => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${user.name}</td>
+        <td>${user.role}</td>
+        <td>${user.email}</td>
+        <td>${user.phone}</td>
+        <td>
+          <button class="btn btn-primary btn-sm" onclick="openUserModal(${user.id})">View Details</button>
+        </td>
+      `;
+      tbody.appendChild(row);
+    });
+    
+    container.appendChild(table);
+  }
+
