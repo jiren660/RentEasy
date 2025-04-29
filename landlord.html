@@ -327,4 +327,45 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="modal fade" id="addTenantModal" tabindex="-1" aria-labelledby="addTenantModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form id="addTenantForm">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="addTenantModalLabel">Add New Tenant</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                        <label for="addTenantName" class="form-label">Full Name</label>
+                                        <input type="text" class="form-control" id="addTenantName" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="addTenantProperty" class="form-label">Property</label>
+                                        <select class="form-select" id="addTenantProperty" required>
+                                            <option value="" selected disabled>Select Property...</option>
+                                        </select>
+                                    </div>
+                                     <div class="mb-3">
+                                        <label for="addTenantUnit" class="form-label">Unit Number</label>
+                                        <input type="text" class="form-control" id="addTenantUnit" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="addTenantPhone" class="form-label">Phone</label>
+                                        <input type="tel" class="form-control" id="addTenantPhone">
+                                    </div>
+                                     <div class="mb-3">
+                                        <label for="addTenantEmail" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="addTenantEmail">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Add Tenant</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             
