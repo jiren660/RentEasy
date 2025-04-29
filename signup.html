@@ -28,19 +28,19 @@
     <div class="form">
       <h2>Create an Account</h2>
       <form action="#" method="POST">
-        <input type="text" placeholder="Full Name" required />
-        <input type="email" placeholder="Email Address" required />
-        <input type="tel" placeholder="Phone Number" required />
-        <input type="password" placeholder="Password" required />
-        <input type="password" placeholder="Confirm Password" required />
-
+        <input type="text" id="firstName" placeholder="First Name" required />
+        <input type="text" id="lastName" placeholder="Last Name" required />
+        <input type="email" id="email" placeholder="Email Address" required />
+        <input type="tel" id="phone" placeholder="Phone Number" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <input type="password" id="confirmPassword" placeholder="Confirm Password" required />
 
         <div id="errorMsg" class="error-message"></div>
+
         <label style="font-size: 0.85rem; margin: 10px 0;">
-          <input type="checkbox" required />
+          <input type="checkbox" id="terms" required />
           I agree to the <a href="#">Terms & Conditions</a>
         </label>
-
 
         <button type="submit">Sign Up</button>
       </form>
@@ -48,12 +48,10 @@
       <div class="links">
         Already have an account? <a href="login.html"><b>Log In</b></a>
       </div>
-
     </div>
   </div>
 
   <script src="SCRIPTS/signup.js"></script>
-
 </body>
 
 </html>
