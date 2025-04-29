@@ -84,6 +84,14 @@ const properties = [
 let cardsPerPage = window.innerWidth >= 992 ? 4 : (window.innerWidth >= 768 ? 3 : 2);
 let detailModalInstance = null;
 let modalCarouselInstance = null;
+let bookingModalInstance = null;
+
+function initializeBookingModal() {
+  const bookingModal = document.getElementById('bookingModal');
+  if (bookingModal) {
+    bookingModalInstance = new bootstrap.Modal(bookingModal);
+  }
+}
 
 function renderProperties() {
   const container = document.getElementById('propertyList');
