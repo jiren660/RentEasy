@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>RentEasy Landlord Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="CSS/landlord.css">
+</head>
+<body>
+    <button id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false" aria-controls="sidebar">
+        ☰
+    </button>
+
+    <div class="d-flex">
+        <nav class="d-flex flex-column" id="sidebar" aria-label="Sidebar navigation">
+            <div>
+                <div class="sidebar-header">
+                    RentEasy
+                </div>
+                <ul class="nav flex-column mt-3 px-2" id="navLinks" role="menu">
+                    <li class="nav-item" role="none">
+                        <a class="nav-link active" href="#" data-target="dashboard" role="menuitem" tabindex="0">
+                            <i class="fas fa-tachometer-alt fa-fw me-2"></i>Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a class="nav-link" href="#" data-target="my-properties" role="menuitem" tabindex="0">
+                           <i class="fas fa-building fa-fw me-2"></i> My Properties
+                        </a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a class="nav-link" href="#" data-target="tenants" role="menuitem" tabindex="0">
+                           <i class="fas fa-users fa-fw me-2"></i> Tenants
+                        </a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a class="nav-link" href="#" data-target="maintenance" role="menuitem" tabindex="0">
+                            <i class="fas fa-tools fa-fw me-2"></i>Maintenance
+                        </a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a class="nav-link" href="#" data-target="payments" role="menuitem" tabindex="0">
+                           <i class="fas fa-dollar-sign fa-fw me-2"></i> Payments
+                        </a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a class="nav-link" href="#" data-target="settings" role="menuitem" tabindex="0">
+                            <i class="fas fa-cog fa-fw me-2"></i>Settings
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="admin-profile" tabindex="0" aria-label="Landlord profile">
+                <img
+                    alt="Landlord profile picture"
+                    height="48"
+                    src="https://via.placeholder.com/48/77988C/FFFFFF?text=JS"
+                    width="48"
+                    id="profileImage"
+                />
+                <div class="admin-info">
+                    <strong id="landlordNameDisplay">John Smith</strong>
+                    Landlord
+                </div>
+            </div>
+        </nav>
+
+        <main class="flex-grow-1" id="main-content">
+            <div class="d-flex justify-content-end mb-4">
+                <button class="btn-logout" id="logoutBtn" type="button">
+                   <i class="fas fa-sign-out-alt me-1"></i> Logout
+                </button>
+            </div>
+        
+            <section id="dashboard" class="content-section">
+                <h1 class="mb-4">Landlord Dashboard</h1>
+                <div class="row g-3 mb-4">
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <div class="summary-card">
+                            <h3 id="totalProperties">0</h3>
+                            <p>Total Properties</p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <div class="summary-card">
+                            <h3 id="activeTenants">0</h3>
+                            <p>Active Tenants</p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <div class="summary-card">
+                            <h3 id="maintenanceRequests">0</h3>
+                            <p>Open Maintenance</p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <div class="summary-card">
+                            <h3 id="totalRevenue">$0</h3>
+                            <p>Est. Monthly Revenue</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="activity-list-container mb-4">
+                     <h2 class="h5 mb-3">Recent Activity</h2>
+                     <div class="activity-list" id="activityList">
+                         <p class="no-data-message">Loading activity...</p>
+                     </div>
+                </div>
+
+                <div class="chart-container">
+                    <h2 class="h5 mb-3">Monthly Revenue Trend</h2>
+                    <canvas id="revenueChart"></canvas>
+                </div>
+            </section>
+
+            <!-- properties -->
+            <section id="my-properties" class="content-section d-none">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h1>My Properties</h1>
+                    <button class="btn btn-primary" id="addPropertyBtn"><i class="fas fa-plus me-1"></i> Add Property</button>
+                 </div>
+                <div class="table-container">
+                  <table class="custom-table" id="propertyList">
+                    <thead>
+                      <tr>
+                        <th>Property Name</th>
+                        <th>Address</th>
+                        <th>Units</th>
+                        <th>Occupancy</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </section>
+
+            <!-- tenants -->
+              <section id="tenants" class="content-section d-none">
+                 <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h1>Tenants</h1>
+                    <button class="btn btn-primary" id="addTenantBtn"><i class="fas fa-user-plus me-1"></i> Add Tenant</button>
+                 </div>
+                <div class="table-container">
+                  <table class="custom-table" id="tenantList">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Property / Unit</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </section>
+
+             <!-- maintainance -->
+             <section id="maintenance" class="content-section d-none">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h1>Maintenance Requests</h1>
+                    <button class="btn btn-primary" id="addMaintenanceBtn"><i class="fas fa-plus me-1"></i> Add Request</button>
+                 </div>
+                <div class="table-container">
+                  <table class="custom-table" id="maintenanceList">
+                    <thead>
+                      <tr>
+                        <th>Property</th>
+                        <th>Unit</th>
+                        <th>Issue</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </section>
+            
+            <!-- payments -->
+            <section id="payments" class="content-section d-none">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h1>Payments</h1>
+                     <button class="btn btn-primary" id="addPaymentBtn"><i class="fas fa-receipt me-1"></i> Record Payment</button>
+                 </div>
+                <div class="table-container">
+                  <table class="custom-table" id="paymentList">
+                    <thead>
+                      <tr>
+                        <th>Tenant</th>
+                        <th>Property</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                         <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </section>  
+
+                        <!-- settings -->
+                        <section id="settings" class="content-section d-none">
+                            <h1 class="mb-4">Settings</h1>
+                            <div class="custom-form">
+                              <form id="settingsForm">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                         <div class="form-group">
+                                          <label for="settingsName" class="form-label">Name</label>
+                                          <input type="text" class="form-control" id="settingsName" placeholder="Your full name" required>
+                                        </div>
+                                    </div>
+                                     <div class="col-md-6">
+                                        <div class="form-group">
+                                          <label for="settingsEmail" class="form-label">Email</label>
+                                          <input type="email" class="form-control" id="settingsEmail" placeholder="your.email@example.com" required>
+                                        </div>
+                                     </div>
+                                </div>
+                                 <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                          <label for="settingsPhone" class="form-label">Phone</label>
+                                          <input type="tel" class="form-control" id="settingsPhone" placeholder="e.g., 555-123-4567">
+                                        </div>
+                                    </div>
+                                     <div class="col-md-6">
+                                        <div class="form-group">
+                                          <label for="settingsPassword" class="form-label">New Password</label>
+                                          <input type="password" class="form-control" id="settingsPassword" placeholder="Leave blank to keep current" aria-describedby="passwordHelp">
+                                          <small id="passwordHelp" class="form-text text-muted">Enter a new password to change it.</small>
+                                        </div>
+                                     </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary mt-2"><i class="fas fa-save me-1"></i> Save Changes</button>
+                              </form>
+                            </div>
+                          </section>
+                    </main>
+                </div>
+                
+                <div class="modal fade" id="addPropertyModal" tabindex="-1" aria-labelledby="addPropertyModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form id="addPropertyForm">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="addPropertyModalLabel">Add New Property</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                        <label for="addPropertyName" class="form-label">Property Name</label>
+                                        <input type="text" class="form-control" id="addPropertyName" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="addPropertyAddress" class="form-label">Address</label>
+                                        <input type="text" class="form-control" id="addPropertyAddress" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="addPropertyUnits" class="form-label">Number of Units</label>
+                                        <input type="number" class="form-control" id="addPropertyUnits" min="1" required>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Add Property</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="editPropertyModal" tabindex="-1" aria-labelledby="editPropertyModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form id="editPropertyForm">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editPropertyModalLabel">Edit Property</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="hidden" id="editPropertyId">
+                                    <div class="mb-3">
+                                        <label for="editPropertyName" class="form-label">Property Name</label>
+                                        <input type="text" class="form-control" id="editPropertyName" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="editPropertyAddress" class="form-label">Address</label>
+                                        <input type="text" class="form-control" id="editPropertyAddress" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="editPropertyUnits" class="form-label">Number of Units</label>
+                                        <input type="number" class="form-control" id="editPropertyUnits" min="1" required>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            
+                 <div class="modal fade" id="viewPropertyModal" tabindex="-1" aria-labelledby="viewPropertyModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="viewPropertyModalLabel">Property Details</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body view-modal-body">
+                                <p><strong>Name:</strong> <span id="viewPropertyName"></span></p>
+                                <p><strong>Address:</strong> <span id="viewPropertyAddress"></span></p>
+                                <p><strong>Units:</strong> <span id="viewPropertyUnits"></span></p>
+                                <p><strong>Occupancy:</strong> <span id="viewPropertyOccupancy"></span></p>
+                                <!-- Add more details if needed -->
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="addTenantModal" tabindex="-1" aria-labelledby="addTenantModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form id="addTenantForm">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="addTenantModalLabel">Add New Tenant</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                        <label for="addTenantName" class="form-label">Full Name</label>
+                                        <input type="text" class="form-control" id="addTenantName" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="addTenantProperty" class="form-label">Property</label>
+                                        <select class="form-select" id="addTenantProperty" required>
+                                            <option value="" selected disabled>Select Property...</option>
+                                        </select>
+                                    </div>
+                                     <div class="mb-3">
+                                        <label for="addTenantUnit" class="form-label">Unit Number</label>
+                                        <input type="text" class="form-control" id="addTenantUnit" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="addTenantPhone" class="form-label">Phone</label>
+                                        <input type="tel" class="form-control" id="addTenantPhone">
+                                    </div>
+                                     <div class="mb-3">
+                                        <label for="addTenantEmail" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="addTenantEmail">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Add Tenant</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="editTenantModal" tabindex="-1" aria-labelledby="editTenantModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form id="editTenantForm">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editTenantModalLabel">Edit Tenant</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="hidden" id="editTenantId">
+                                     <div class="mb-3">
+                                        <label for="editTenantName" class="form-label">Full Name</label>
+                                        <input type="text" class="form-control" id="editTenantName" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="editTenantProperty" class="form-label">Property</label>
+                                        <select class="form-select" id="editTenantProperty" required>
+                                            <option value="" disabled>Select Property...</option>
+                                        </select>
+                                    </div>
+                                     <div class="mb-3">
+                                        <label for="editTenantUnit" class="form-label">Unit Number</label>
+                                        <input type="text" class="form-control" id="editTenantUnit" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="editTenantPhone" class="form-label">Phone</label>
+                                        <input type="tel" class="form-control" id="editTenantPhone">
+                                    </div>
+                                     <div class="mb-3">
+                                        <label for="editTenantEmail" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="editTenantEmail">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="modal fade" id="viewTenantModal" tabindex="-1" aria-labelledby="viewTenantModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="viewTenantModalLabel">Tenant Details</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body view-modal-body">
+                                 <p><strong>Name:</strong> <span id="viewTenantName"></span></p>
+                                 <p><strong>Property:</strong> <span id="viewTenantProperty"></span></p>
+                                 <p><strong>Unit:</strong> <span id="viewTenantUnit"></span></p>
+                                 <p><strong>Phone:</strong> <span id="viewTenantPhone"></span></p>
+                                 <p><strong>Email:</strong> <span id="viewTenantEmail"></span></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="addMaintenanceModal" tabindex="-1" aria-labelledby="addMaintenanceModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form id="addMaintenanceForm">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="addMaintenanceModalLabel">Add Maintenance Request</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                     <div class="mb-3">
+                                        <label for="addMaintenanceProperty" class="form-label">Property</label>
+                                        <select class="form-select" id="addMaintenanceProperty" required>
+                                            <option value="" selected disabled>Select Property...</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="addMaintenanceUnit" class="form-label">Unit Number</label>
+                                        <input type="text" class="form-control" id="addMaintenanceUnit" required>
+                                    </div>
+                                     <div class="mb-3">
+                                        <label for="addMaintenanceIssue" class="form-label">Issue Description</label>
+                                        <textarea class="form-control" id="addMaintenanceIssue" rows="3" required></textarea>
+                                    </div>
+                                     <div class="mb-3">
+                                        <label for="addMaintenanceStatus" class="form-label">Initial Status</label>
+                                        <select class="form-select" id="addMaintenanceStatus" required>
+                                            <option value="Pending" selected>Pending</option>
+                                            <option value="In Progress">In Progress</option>
+                                            <option value="Completed">Completed</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Add Request</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="modal fade" id="editMaintenanceModal" tabindex="-1" aria-labelledby="editMaintenanceModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form id="editMaintenanceForm">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editMaintenanceModalLabel">Edit Maintenance Request</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                 <div class="modal-body">
+                                    <input type="hidden" id="editMaintenanceId">
+                                    <p><strong>Property:</strong> <span id="editMaintenancePropertyDisplay"></span></p>
+                                    <p><strong>Unit:</strong> <span id="editMaintenanceUnitDisplay"></span></p>
+                                     <div class="mb-3">
+                                        <label for="editMaintenanceIssue" class="form-label">Issue Description</label>
+                                        <textarea class="form-control" id="editMaintenanceIssue" rows="3" required></textarea>
+                                    </div>
+                                     <div class="mb-3">
+                                        <label for="editMaintenanceStatus" class="form-label">Status</label>
+                                        <select class="form-select" id="editMaintenanceStatus" required>
+                                            <option value="Pending">Pending</option>
+                                            <option value="In Progress">In Progress</option>
+                                            <option value="Completed">Completed</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="addPaymentModal" tabindex="-1" aria-labelledby="addPaymentModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form id="addPaymentForm">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="addPaymentModalLabel">Record New Payment</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                 <div class="modal-body">
+                                    <div class="mb-3">
+                                        <label for="addPaymentTenant" class="form-label">Tenant</label>
+                                        <select class="form-select" id="addPaymentTenant" required>
+                                            <option value="" selected disabled>Select Tenant...</option>
+                                        </select>
+                                    </div>
+                                     <div class="mb-3">
+                                        <label for="addPaymentAmount" class="form-label">Amount ($)</label>
+                                        <input type="number" step="0.01" class="form-control" id="addPaymentAmount" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="addPaymentDate" class="form-label">Payment Date</label>
+                                        <input type="date" class="form-control" id="addPaymentDate" required>
+                                    </div>
+                                     <div class="mb-3">
+                                        <label for="addPaymentStatus" class="form-label">Status</label>
+                                        <select class="form-select" id="addPaymentStatus" required>
+                                            <option value="Paid" selected>Paid</option>
+                                            <option value="Pending">Pending</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Record Payment</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            
+                 <div class="modal fade" id="viewPaymentModal" tabindex="-1" aria-labelledby="viewPaymentModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="viewPaymentModalLabel">Payment Details</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                             <div class="modal-body view-modal-body">
+                                 <p><strong>Tenant:</strong> <span id="viewPaymentTenant"></span></p>
+                                 <p><strong>Property:</strong> <span id="viewPaymentProperty"></span></p>
+                                 <p><strong>Amount:</strong> <span id="viewPaymentAmount"></span></p>
+                                 <p><strong>Date:</strong> <span id="viewPaymentDate"></span></p>
+                                 <p><strong>Status:</strong> <span id="viewPaymentStatus"></span></p>
+                             </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                <script src="SCRIPTS/landlord.js"></script>
+</body>
+</html>
+            
