@@ -175,9 +175,14 @@
         <div class="profile-content">
           <h2>My Profile</h2>
           <div class="form-group">
-            <label>Full Name</label>
-            <input type="text" placeholder="Enter your name">
+            <label>First Name</label>
+            <input type="text" id="firstName" placeholder="Enter your first name">
           </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" id="lastName" placeholder="Enter your last name">
+          </div>
+          
           <div class="form-group">
             <label>Email Address</label>
             <input type="email" placeholder="Enter your email">
@@ -186,7 +191,7 @@
             <label>Phone Number</label>
             <input type="tel" placeholder="Enter your phone number">
           </div>
-          <button>Save Changes</button>
+          <button onclick="saveProfile()">Save Changes</button>
 
           <div class="change-password-section">
             <h2>Change Password</h2>
@@ -253,7 +258,62 @@
       sections.forEach(section => section.classList.remove('active'));
       document.getElementById(sectionId).classList.add('active');
     }
+  
+    // Edit Listings
+    document.querySelectorAll('#listings .listing button:nth-child(3)').forEach((editBtn, index) => {
+      editBtn.addEventListener('click', () => {
+        const listing = editBtn.closest('.listing');
+        const title = listing.querySelector('h3');
+        const price = listing.querySelector('p');
+  
+        const newTitle = prompt("Edit Listing Title:", title.textContent);
+        const newDetails = prompt("Edit Listing Details:", price.textContent);
+  
+        if (newTitle !== null) title.textContent = newTitle;
+        if (newDetails !== null) price.textContent = newDetails;
+      });
+    });
+  
+    // Disable Delete Listings
+    document.querySelectorAll('#listings .listing button:nth-child(4)').forEach(deleteBtn => {
+      deleteBtn.addEventListener('click', () => {
+        alert("You cannot delete your listing. Please contact the admin.");
+      });
+    });
+  
+    // View Favorite
+    document.querySelectorAll('#favorites .listing button:nth-child(3)').forEach(viewBtn => {
+      viewBtn.addEventListener('click', () => {
+        alert("Redirecting to property details page...");
+        // Replace with actual redirection logic later
+      });
+    });
+  
+    // Remove Favorite
+    document.querySelectorAll('#favorites .listing button:nth-child(4)').forEach(removeBtn => {
+      removeBtn.addEventListener('click', () => {
+        const listing = removeBtn.closest('.listing');
+        listing.remove();
+      });
+    });
+
+    function saveProfile() {
+  const firstName = document.getElementById("firstName").value.trim();
+  const lastName = document.getElementById("lastName").value.trim();
+  const email = document.querySelector("input[type='email']").value.trim();
+  const phone = document.querySelector("input[type='tel']").value.trim();
+
+  console.log("Saving Profile:");
+  console.log("First Name:", firstName);
+  console.log("Last Name:", lastName);
+  console.log("Email:", email);
+  console.log("Phone:", phone);
+
+  alert("Profile saved successfully!");
+}
+
   </script>
+  
 </body>
 
 </html>
