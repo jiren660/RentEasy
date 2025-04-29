@@ -117,6 +117,25 @@ document.getElementById('submitBooking')?.addEventListener('click', function() {
   }
 });
 
+let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+
+document.addEventListener('click', function(e) {
+  if (e.target.closest('.add-to-favorites')) {
+    const propertyIndex = e.target.closest('.add-to-favorites').dataset.propertyIndex;
+    const button = e.target.closest('.add-to-favorites');
+    
+    if (favorites.includes(propertyIndex)) {
+      favorites = favorites.filter(i => i !== propertyIndex);
+      button.innerHTML = '<i class="far fa-heart"></i> Add to Favorites';
+    } else {
+      favorites.push(propertyIndex);
+      button.innerHTML = '<i class="fas fa-heart"></i> Remove from Favorites';
+    }
+    
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+  }
+});
+
 
 function renderProperties() {
   const container = document.getElementById('propertyList');
