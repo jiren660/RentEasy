@@ -166,63 +166,68 @@ $(document).ready(function() {
   
   
     function initializeOrUpdateChart() {
-        const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+      const ctx = document.getElementById("listingsChart")?.getContext("2d");
+      if (!ctx) {
+          console.error("Chart canvas context not found!");
+          return;
+      }
   
-        const monthlyRevenue = {};
-        const months = new Set();
+      const listingsByMonth = {};
+      const months = new Set();
   
-        payments.forEach(p => {
-            if (p.status === 'Paid') {
-                const monthYear = p.date.substring(0, 7);
-                months.add(monthYear);
-                monthlyRevenue[monthYear] = (monthlyRevenue[monthYear] || 0) + p.amount;
-            }
-        });
+      listings.forEach(l => {
+          const monthYear = l.dateAdded.substring(0, 7);
+          months.add(monthYear);
+          listingsByMonth[monthYear] = (listingsByMonth[monthYear] || 0) + 1;
+      });
   
-        const sortedMonths = Array.from(months).sort();
-        const recentMonths = sortedMonths.slice(-6);
+      const sortedMonths = Array.from(months).sort();
+      const recentMonths = sortedMonths.slice(-6);
   
-        const chartLabels = recentMonths.map(my => {
-            const [year, month] = my.split('-');
-            const date = new Date(year, month - 1);
-            return date.toLocaleString('en-US', { month: 'short', year: 'numeric'});
-        });
-        const chartData = recentMonths.map(my => monthlyRevenue[my] || 0);
+      const chartLabels = recentMonths.map(my => {
+          const [year, month] = my.split('-');
+          const date = new Date(year, month - 1);
+          return date.toLocaleString('en-US', { month: 'short', year: 'numeric'});
+      });
+      const chartData = recentMonths.map(my => listingsByMonth[my] || 0);
   
-        if (revenueChartInstance) {
-            revenueChartInstance.destroy();
-        }
+      if (listingsChartInstance) {
+          listingsChartInstance.destroy();
+      }
   
-        revenueChartInstance = new Chart(revenueCtx, {
+      listingsChartInstance = new Chart(ctx, {
           type: 'line',
           data: {
-            labels: chartLabels,
-            datasets: [{
-              label: 'Actual Revenue Received',
-              data: chartData,
-              borderColor: 'rgb(119, 152, 140)',
-              backgroundColor: 'rgba(119, 152, 140, 0.1)',
-              borderWidth: 2,
-              fill: true,
-              tension: 0.1
-            }]
+              labels: chartLabels,
+              datasets: [{
+                  label: 'Listings Added',
+                  data: chartData,
+                  borderColor: 'rgb(119, 152, 140)',
+                  backgroundColor: 'rgba(119, 152, 140, 0.1)',
+                  borderWidth: 2,
+                  fill: true,
+                  tension: 0.1
+              }]
           },
           options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-              y: {
-                beginAtZero: true,
-                ticks: { callback: value => formatCurrency(value) }
+              responsive: true,
+              maintainAspectRatio: false,
+              scales: {
+                  y: {
+                      beginAtZero: true,
+                      ticks: {
+                          stepSize: 1,
+                          precision: 0
+                      }
+                  }
+              },
+              plugins: {
+                  legend: { display: true, position: 'top' }
               }
-            },
-            plugins: {
-              legend: { display: true, position: 'top' },
-              tooltip: { callbacks: { label: context => `${context.dataset.label}: ${formatCurrency(context.parsed.y)}` } }
-            }
           }
-        });
-    };
+      });
+  }
+  
   
     function renderProperties() {
       const tbody = $('#propertyList tbody');

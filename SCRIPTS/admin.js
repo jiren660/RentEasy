@@ -243,8 +243,8 @@ $(document).ready(function () {
   function initializeOrUpdateChart() {
       const ctx = document.getElementById("listingsChart")?.getContext("2d");
       if (!ctx) {
-           console.error("Chart canvas context not found!");
-           return;
+          console.error("Chart canvas context not found!");
+          return;
       }
 
       if (listingsChartInstance) {
@@ -253,12 +253,11 @@ $(document).ready(function () {
       }
 
       if (!listings || listings.length === 0) {
-           ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-           ctx.textAlign = 'center';
-           ctx.fillText('No listing data available for chart.', ctx.canvas.width / 2, ctx.canvas.height / 2);
-           return;
-      }
-
+          ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+          ctx.textAlign = 'center';
+          ctx.fillText('No listing data available for chart.', ctx.canvas.width / 2, ctx.canvas.height / 2);
+          return;
+    }
       const listingsByMonth = {};
       let minDate = new Date();
       let maxDate = new Date(1970, 0, 1);
@@ -302,38 +301,61 @@ $(document).ready(function () {
            chartLabels.splice(0, chartLabels.length - MAX_MONTHS);
            chartData.splice(0, chartData.length - MAX_MONTHS);
       }
-
-
-      listingsChartInstance = new Chart(ctx, {
-          type: "line",
-          data: {
-              labels: chartLabels,
-              datasets: [{
-                  label: "Listings Added",
-                  data: chartData,
-                  borderColor: "#5f746a",
-                  backgroundColor: "rgba(119, 152, 140, 0.1)",
-                  fill: true,
-                  tension: 0.1,
-                  borderWidth: 2
-              }],
-          },
-          options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              scales: {
-                  y: {
-                     beginAtZero: true,
-                     ticks: {
-                          stepSize: 1,
-                          precision: 0
-                      }
-                  },
-              },
-              plugins: { legend: { display: false } }
-          },
-      });
-  }
+      
+    listingsChartInstance = new Chart(ctx, {
+        type: "line",
+        data: {
+            labels: chartLabels,
+            datasets: [{
+                label: "Listings Added",
+                data: chartData,
+                borderColor: "#5f746a",
+                backgroundColor: "rgba(119, 152, 140, 0.1)",
+                fill: true,
+                tension: 0.1,
+                borderWidth: 1 // Reduced from 2
+            }],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true, // Changed to true
+            aspectRatio: 2, // Added to control height relative to width
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1,
+                        precision: 0,
+                        font: {
+                            size: 10 // Smaller font size
+                        }
+                    }
+                },
+                x: {
+                    ticks: {
+                        font: {
+                            size: 10 // Smaller font size
+                        }
+                    }
+                }
+            },
+            plugins: {
+                legend: { display: false },
+                title: {
+                    display: false
+                }
+            },
+            layout: {
+                padding: {
+                    left: 5,
+                    right: 5,
+                    top: 5,
+                    bottom: 5
+                }
+            }
+        },
+    });
+}
 
   $('#navLinks').on('click', '.nav-link', function(e) {
       e.preventDefault();
