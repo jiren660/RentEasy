@@ -169,6 +169,15 @@
     animation: vibrate 0.3s ease-in-out 2;
   }
   
+
+  .logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    gap: 10px; /* space between image and text */
+  }
+  
   @keyframes vibrate {
     0% { transform: translateX(0); }
     25% { transform: translateX(-3px); }
