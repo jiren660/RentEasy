@@ -84,29 +84,13 @@ const properties = [
 let cardsPerPage = window.innerWidth >= 992 ? 4 : (window.innerWidth >= 768 ? 3 : 2);
 let detailModalInstance = null;
 let modalCarouselInstance = null;
-let filteredProperties = [...properties];
-
-function filterPropertiesByBarangay(barangay) {
-  if (!barangay) {
-    filteredProperties = [...properties];
-  } else {
-    filteredProperties = properties.filter(property => 
-      property.location.toLowerCase().includes(barangay.toLowerCase())
-    );
-  }
-  renderProperties();
-}
-
-document.getElementById('barangaySelect')?.addEventListener('change', (e) => {
-  filterPropertiesByBarangay(e.target.value);
-});
 
 function renderProperties() {
   const container = document.getElementById('propertyList');
   if (!container) return;
   container.innerHTML = '';
 
-  const numProperties = filteredProperties.length;
+  const numProperties = properties.length;
   if (numProperties === 0) {
     container.innerHTML = '<p class="col-12 text-center">No properties found.</p>';
     return;
@@ -114,7 +98,7 @@ function renderProperties() {
 
   cardsPerPage = window.innerWidth >= 992 ? 4 : (window.innerWidth >= 768 ? 3 : 2);
 
-  filteredProperties.forEach((property, index) => {
+  properties.forEach((property, index) => {
     const card = document.createElement('div');
     const lgCols = Math.max(1, Math.floor(12 / cardsPerPage));
     const mdCols = window.innerWidth >= 768 ? 4 : 6;
@@ -128,13 +112,13 @@ function renderProperties() {
       <div class="card shadow-sm h-100">
         <div id="${carouselId}" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
           <div class="carousel-inner">
-            ${filteredProperties.images.map((img, idx) => `
+            ${property.images.map((img, idx) => `
               <div class="carousel-item ${idx === 0 ? 'active' : ''}">
-                <img src="${img}" class="d-block w-100 card-img-top" alt="${filteredProperties.name} image ${idx + 1}" style="height: 200px; object-fit: cover;">
+                <img src="${img}" class="d-block w-100 card-img-top" alt="${property.name} image ${idx + 1}" style="height: 200px; object-fit: cover;">
               </div>
             `).join('')}
           </div>
-          ${filteredProperties.images.length > 1 ? `
+          ${property.images.length > 1 ? `
           <button class="carousel-control-prev" type="button" data-bs-target="#${carouselId}" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
@@ -145,13 +129,13 @@ function renderProperties() {
           </button>` : ''}
         </div>
         <div class="card-body d-flex flex-column">
-          <h6 class="text-muted mb-1">${filteredProperties.price}</h6>
-          <h5 class="card-title">${filteredProperties.name}</h5>
-          <p class="text-muted mb-2"><i class="fas fa-map-marker-alt me-1"></i>${filteredProperties.location}</p>
+          <h6 class="text-muted mb-1">${property.price}</h6>
+          <h5 class="card-title">${property.name}</h5>
+          <p class="text-muted mb-2"><i class="fas fa-map-marker-alt me-1"></i>${property.location}</p>
           <div class="property-info d-flex justify-content-between mt-auto pt-2">
-            <span><i class="fa fa-bed"></i> ${filteredProperties.beds} Beds</span>
-            <span><i class="fa fa-bath"></i> ${filteredProperties.baths} Baths</span>
-            <span><i class="fa fa-expand"></i> ${filteredProperties.size}</span>
+            <span><i class="fa fa-bed"></i> ${property.beds} Beds</span>
+            <span><i class="fa fa-bath"></i> ${property.baths} Baths</span>
+            <span><i class="fa fa-expand"></i> ${property.size}</span>
           </div>
         </div>
         <div class="card-footer bg-transparent border-top-0 text-center pb-3">

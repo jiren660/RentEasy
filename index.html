@@ -47,8 +47,8 @@
         </button>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
           <li><a class="dropdown-item" href="profile.html">Profile</a></li>
-          <li><a class="dropdown-item" href="profile.html">My Listings</a></li>
-          <li><a class="dropdown-item" href="profile.html">Favorites</a></li>
+          <li><a class="dropdown-item" href="my-listings.html">My Listings</a></li>
+          <li><a class="dropdown-item" href="favorites.html">Favorites</a></li>
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item" href="#" id="logoutBtn">Logout</a></li>
         </ul>
@@ -158,17 +158,9 @@
           </div>
 
           <div class="col-sm">
-            <label for="barangaySelect" class="form-label small text-muted">Barangay:</label>
-            <select class="form-select" id="barangaySelect">
-              <option value="" selected>All Barangays</option>
-              <option value="tumaga">Tumaga</option>
-              <option value="sta-maria">Sta. Maria</option>
-              <option value="tetuan">Tetuan</option>
-              <option value="guiwan">Guiwan</option>
-              <option value="pasonanca">Pasonanca</option>
-            </select>
+             <label for="locationInput" class="form-label small text-muted">Location:</label>
+            <input type="text" id="locationInput" class="form-control" placeholder="e.g., Zamboanga City">
           </div>
-          
 
           <div class="col-sm">
             <label for="styleInput" class="form-label small text-muted">Style/Keyword:</label>
