@@ -214,11 +214,11 @@
     color: white;
     outline: none;
   }
-
+  /* Modal styles */
   .modal-content {
     border-radius: 0.5rem;
   }
-
+  /* Hamburger for mobile */
   #hamburgerBtn {
     display: none;
     position: fixed;
