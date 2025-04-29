@@ -21,6 +21,13 @@ document.addEventListener("DOMContentLoaded", function () {
           return;
       }
 
+
+            // Check if email and password match the admin's credentials
+            if (email === "landlord@gmail.com" && password === "landlord") {
+              // Redirect to admin page
+              window.location.href = "landlord.html";
+              return;
+          }
       // Check for normal user login from localStorage
       const users = JSON.parse(localStorage.getItem("users") || "[]");
       const user = users.find(u => u.email === email && u.password === password);
