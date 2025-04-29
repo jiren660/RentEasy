@@ -186,7 +186,7 @@
     border: 1px solid var(--main-color-light);
     border-radius: 0.5rem;
     padding: 1.5rem;
-    background-color: var(--main-color-lighter);
+    background-color: #fff;
     user-select: none;
     box-shadow: 0 1px 3px rgb(0 0 0 / 0.05);
     color: var(--main-color-dark);

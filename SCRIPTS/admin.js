@@ -253,7 +253,6 @@ $(document).ready(function () {
       }
 
       if (!listings || listings.length === 0) {
-           // Optionally display a message on the canvas or hide it
            ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
            ctx.textAlign = 'center';
            ctx.fillText('No listing data available for chart.', ctx.canvas.width / 2, ctx.canvas.height / 2);
@@ -269,20 +268,18 @@ $(document).ready(function () {
           if (!isNaN(date)) {
               if (date < minDate) minDate = date;
               if (date > maxDate) maxDate = date;
-              const monthYear = l.dateAdded.substring(0, 7); // YYYY-MM
+              const monthYear = l.dateAdded.substring(0, 7);
               listingsByMonth[monthYear] = (listingsByMonth[monthYear] || 0) + 1;
           }
       });
 
-      // Ensure maxDate is at least the current month if data is old or only future dated
       const currentMonth = new Date();
       if (maxDate < currentMonth) {
           maxDate = currentMonth;
       }
-      // Ensure minDate is not after maxDate (handles edge case of no valid dates)
       if (minDate > maxDate) {
           minDate = new Date(maxDate);
-          minDate.setMonth(minDate.getMonth() - 1); // Default to one month before max if needed
+          minDate.setMonth(minDate.getMonth() - 1);
       }
 
 
@@ -291,7 +288,7 @@ $(document).ready(function () {
       let currentDate = new Date(minDate.getFullYear(), minDate.getMonth(), 1);
 
       while (currentDate <= maxDate) {
-          const monthYearStr = currentDate.toISOString().substring(0, 7); // YYYY-MM
+          const monthYearStr = currentDate.toISOString().substring(0, 7);
           const label = currentDate.toLocaleString('en-US', { month: 'short', year: 'numeric' });
 
           chartLabels.push(label);
@@ -300,7 +297,6 @@ $(document).ready(function () {
           currentDate.setMonth(currentDate.getMonth() + 1);
       }
 
-      // Limit to last 12 months if the range is very large
       const MAX_MONTHS = 12;
       if (chartLabels.length > MAX_MONTHS) {
            chartLabels.splice(0, chartLabels.length - MAX_MONTHS);
@@ -329,8 +325,8 @@ $(document).ready(function () {
                   y: {
                      beginAtZero: true,
                      ticks: {
-                          stepSize: 1, // Ensure integer steps for counts
-                          precision: 0 // Display whole numbers only
+                          stepSize: 1,
+                          precision: 0
                       }
                   },
               },
@@ -459,7 +455,7 @@ $(document).ready(function () {
       }
       renderListingsTable();
       updateDashboardCards();
-      initializeOrUpdateChart(); // Update chart if listings changed
+      initializeOrUpdateChart();
       getModal('listingModal').hide();
   });
 
@@ -482,7 +478,7 @@ $(document).ready(function () {
           listings = listings.filter(l => l.id !== id);
           renderListingsTable();
           updateDashboardCards();
-          initializeOrUpdateChart(); // Update chart if listings changed
+          initializeOrUpdateChart();
           addActivity(`Deleted listing: "${listing.title}"`);
       }
   });
@@ -550,12 +546,12 @@ $(document).ready(function () {
                if (!userData.password) {
                    delete updateData.password;
                } else {
-                    updateData.passwordHash = "..."; // Simulate hashing
+                    updateData.passwordHash = "...";
                     delete updateData.password;
                }
                users[index] = updateData;
                addActivity(`Updated user profile: ${userData.name}`);
-               if(updateData.role === 'Admin') { // Update sidebar if editing current admin
+               if(updateData.role === 'Admin') {
                   loadSettings();
                }
           }
@@ -722,8 +718,7 @@ $(document).ready(function () {
                users[adminIndex].passwordHash = "...";
                console.log("Admin password updated (simulation).");
            }
-           $('#adminNameDisplay').text(newName); // Update display name immediately
-           // Optionally re-render user table if it contains the admin user shown differently
+           $('#adminNameDisplay').text(newName);
            if ($('#users').is(':visible')) {
                renderUsersTable();
            }
