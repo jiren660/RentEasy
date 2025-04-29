@@ -738,7 +738,28 @@ footer p {
     font-size: 0.85rem;
 }
 
+.add-to-favorites {
+  transition: all 0.2s ease;
+}
 
+.add-to-favorites i {
+  margin-right: 5px;
+}
+
+.add-to-favorites.active {
+  background-color: #dc3545;
+  color: white;
+  border-color: #dc3545;
+}
+
+#bookingModal .form-control {
+  border-radius: 8px;
+}
+
+#bookingModal .form-control:focus {
+  border-color: #77988c;
+  box-shadow: 0 0 0 0.2rem rgba(119, 152, 140, 0.2);
+}
 @media (max-width: 992px) {
     .hero-section {
         flex-direction: column;
