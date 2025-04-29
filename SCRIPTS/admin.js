@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function logout() {
     sessionStorage.clear();
     localStorage.clear();
-    
+
     const toast = new bootstrap.Toast(document.createElement('div'));
     toast.innerHTML = `
       <div class="toast-body bg-success text-white">
@@ -100,9 +100,9 @@ document.addEventListener("DOMContentLoaded", function () {
     `;
     document.body.appendChild(toast._element);
     toast.show();
-    
+
     setTimeout(() => {
-      window.location.href = '/login.html';
+      window.location.href = 'login.html';
     }, 1500);
   }
 
@@ -134,19 +134,18 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
-
   let listings = [
-    { 
-      id: 1, 
-      title: "Cozy Apartment Downtown", 
+    {
+      id: 1,
+      title: "Cozy Apartment Downtown",
       status: "Active",
       price: "$1200/month",
       location: "Downtown",
       description: "Modern 1BR apartment"
     },
-    { 
-      id: 2, 
-      title: "Spacious House in Suburbs", 
+    {
+      id: 2,
+      title: "Spacious House in Suburbs",
       status: "Pending",
       price: "$2500/month",
       location: "Suburbs",
@@ -155,17 +154,17 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
   let users = [
-    { 
-      id: 1, 
-      name: "John Doe", 
+    {
+      id: 1,
+      name: "John Doe",
       role: "Renter",
       email: "john@example.com",
       phone: "555-0123",
       address: "123 Main St"
     },
-    { 
-      id: 2, 
-      name: "Jane Smith", 
+    {
+      id: 2,
+      name: "Jane Smith",
       role: "Landlord",
       email: "jane@example.com",
       phone: "555-0124",
@@ -186,12 +185,12 @@ document.addEventListener("DOMContentLoaded", function () {
   function renderListings() {
     const container = document.getElementById("listingsList");
     container.innerHTML = "";
-    
+
     if (listings.length === 0) {
       container.innerHTML = "<p>No listings available.</p>";
       return;
     }
-    
+
     const table = document.createElement("table");
     table.className = "table table-hover";
     table.innerHTML = `
@@ -207,9 +206,9 @@ document.addEventListener("DOMContentLoaded", function () {
       <tbody>
       </tbody>
     `;
-    
+
     const tbody = table.querySelector("tbody");
-    
+
     listings.forEach((listing) => {
       const row = document.createElement("tr");
       row.innerHTML = `
@@ -220,7 +219,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <td>
           <div class="btn-group btn-group-sm">
             <button class="btn btn-primary" onclick="openListingModal(${listing.id})">View</button>
-            ${listing.status === 'Pending' ? 
+            ${listing.status === 'Pending' ?
               `<button class="btn btn-success" onclick="approveListing(${listing.id})">Approve</button>` : ''}
             <button class="btn btn-danger" onclick="deleteListing(${listing.id})">Delete</button>
           </div>
@@ -228,19 +227,19 @@ document.addEventListener("DOMContentLoaded", function () {
       `;
       tbody.appendChild(row);
     });
-    
+
     container.appendChild(table);
   }
 
   function renderUsers() {
     const container = document.getElementById("usersList");
     container.innerHTML = "";
-    
+
     if (users.length === 0) {
       container.innerHTML = "<p>No users available.</p>";
       return;
     }
-    
+
     const table = document.createElement("table");
     table.className = "table table-hover";
     table.innerHTML = `
@@ -256,9 +255,9 @@ document.addEventListener("DOMContentLoaded", function () {
       <tbody>
       </tbody>
     `;
-    
+
     const tbody = table.querySelector("tbody");
-    
+
     users.forEach((user) => {
       const row = document.createElement("tr");
       row.innerHTML = `
@@ -272,10 +271,9 @@ document.addEventListener("DOMContentLoaded", function () {
       `;
       tbody.appendChild(row);
     });
-    
+
     container.appendChild(table);
   }
-
   const modal = new bootstrap.Modal(document.getElementById("modal"));
   const modalTitle = document.getElementById("modalTitle");
   const modalBody = document.getElementById("modalBody");
@@ -421,5 +419,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   renderListings();
   renderUsers();
-});
 
+  // Make functions globally accessible for inline event handlers
+  window.openListingModal = openListingModal;
+  window.approveListing = approveListing;
+  window.deleteListing = deleteListing;
+  window.openUserModal = openUserModal;
+});
