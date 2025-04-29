@@ -99,6 +99,14 @@ document.addEventListener('click', function(e) {
   }
 });
 
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('book-property')) {
+    if (bookingModalInstance) {
+      bookingModalInstance.show();
+    }
+  }
+});
+
 
 function renderProperties() {
   const container = document.getElementById('propertyList');
