@@ -93,6 +93,13 @@ function initializeBookingModal() {
   }
 }
 
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('contact-landlord')) {
+    alert('Connecting you with the landlord...');
+  }
+});
+
+
 function renderProperties() {
   const container = document.getElementById('propertyList');
   if (!container) return;
