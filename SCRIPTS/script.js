@@ -160,6 +160,9 @@ document.querySelectorAll('input[name="propertyType"]').forEach(input => {
 });
 document.getElementById('priceRange')?.addEventListener('change', filterProperties);
 
+document.addEventListener('DOMContentLoaded', function() {
+  initializeBookingModal();
+});
 
 function renderProperties() {
   const container = document.getElementById('propertyList');
