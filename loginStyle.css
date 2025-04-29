@@ -169,6 +169,15 @@
     animation: vibrate 0.3s ease-in-out 2;
   }
   
+
+  .logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    gap: 10px; /* space between image and text */
+  }
+  
   @keyframes vibrate {
     0% { transform: translateX(0); }
     25% { transform: translateX(-3px); }
@@ -197,6 +206,76 @@
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+  @media (max-width: 768px) {
+    .login {
+      flex-direction: column;
+    }
+  
+    .left-image {
+      flex: none;
+      height: 200px;
+      background-position: center center;
+    }
+  
+    .form {
+      flex: none;
+      padding: 20px;
+    }
+  
+    .form h2 {
+      font-size: 1.5rem;
+    }
+  
+    .form input[type="email"],
+    .form input[type="password"] {
+      padding: 10px 12px;
+    }
+  
+    .form button {
+      padding: 10px 12px;
+    }
+  
+    .logo {
+      justify-content: center;
+      margin-top: 20px;
+    }
+  
+    .logo h1 {
+      font-size: 2rem;
+      margin-left: 10px;
+    }
+  
+    .logo img {
+      width: 60px;
+      height: 60px;
+      margin-left: 10px;
+    }
+  
+    .quote {
+      margin-left: 20px;
+      margin-right: 20px;
+      font-size: 1rem;
+      line-height: 30px;
+      text-align: center;
+    }
+  
+    .popup-content {
+      padding: 20px 30px;
+    }
+  
+    .popup-content h2 {
+      font-size: 20px;
+    }
+  
+    .popup-content p {
+      font-size: 14px;
+    }
+  
+    .forgot-password {
+      margin-right: 0;
+      text-align: center;
     }
   }
   

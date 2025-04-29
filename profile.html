@@ -1,75 +1,319 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Profile - RentEasy</title>
-  <link rel="stylesheet" href="CSS/profile.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - RentEasy</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f4f4f9;
+    }
+
+    .main-container {
+      display: flex;
+    }
+
+    .sidebar {
+      background-color: #77988C;
+      color: white;
+      width: 250px;
+      height: 100vh;
+      padding: 20px;
+      position: fixed;
+    }
+
+    .sidebar .logo {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .sidebar .logo img {
+      width: 50px;
+      height: auto;
+    }
+
+    .sidebar .logo h1 {
+      font-size: 1.5rem;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar ul li {
+      margin: 20px 0;
+    }
+
+    .sidebar ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .sidebar ul li a:hover {
+      color: #283933;
+    }
+
+    .content {
+      margin-left: 270px;
+      width: calc(100% - 270px);
+      padding: 40px;
+    }
+
+    .profile-content {
+      background-color: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-content h2 {
+      font-size: 2rem;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #ff6f61;
+    }
+
+    button {
+      padding: 12px 20px;
+      background-color: #77988C;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    button:hover {
+      background-color: #283933;
+    }
+
+    .change-password-section {
+      margin-top: 20px;
+    }
+
+    .change-password-section h2 {
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      background-color: #77988c;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #4f665b;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+  </style>
 </head>
-<body class="first-page">
+
+<body>
   <div class="main-container">
     <div class="sidebar">
-        <div class="logo">
-            <a href="index.html" class="logo-link">
-              <img src="IMG/logo.png" alt="RentEasy Logo" />
-              <h1>RentEasy</h1>
-            </a>
-          </div>
+      <div class="logo">
+        <img src="IMG/logo.png" alt="RentEasy Logo">
+        <h1>RentEasy</h1>
+      </div>
       <ul>
-        <li><a href="profile.html">Profile</a></li>
-        <li><a href="my-listings.html">My Listings</a></li>
-        <li><a href="favorites.html">Favorites</a></li>
-        <li><a href="index.html" id="logoutBtn">Logout</a></li>
+        <li><a onclick="showSection('profile')">Profile</a></li>
+        <li><a onclick="showSection('listings')">My Listings</a></li>
+        <li><a onclick="showSection('favorites')">Favorites</a></li>
+        <li><a href="logout.html">Logout</a></li>
       </ul>
     </div>
 
     <div class="content">
-      <div class="profile-content">
-        <h2>My Profile</h2>
-        <form id="profileForm">
+      <div id="profile" class="section active">
+        <div class="profile-content">
+          <h2>My Profile</h2>
           <div class="form-group">
-            <label for="fullName">Full Name</label>
-            <input type="text" id="fullName" placeholder="Full Name" required />
-          </div>
-
-          <hr style="margin: 40px 0; border-top: 1px solid #ccc;" />
-
-<div class="change-password-section">
-  <h2>Change Password</h2>
-  <form id="changePasswordForm">
-    <div class="form-group">
-      <label for="currentPassword">Current Password</label>
-      <input type="password" id="currentPassword" placeholder="Current Password" required />
-    </div>
-    <div class="form-group">
-      <label for="newPassword">New Password</label>
-      <input type="password" id="newPassword" placeholder="New Password" required />
-    </div>
-    <div class="form-group">
-      <label for="confirmPassword">Confirm New Password</label>
-      <input type="password" id="confirmPassword" placeholder="Confirm New Password" required />
-    </div>
-    <button type="submit" class="btn">Update Password</button>
-  </form>
-</div>
-
-
-<hr style="margin: 40px 0; border-top: 1px solid #ccc;" />
-
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" placeholder="Email Address" readonly />
+            <label>First Name</label>
+            <input type="text" id="firstName" placeholder="Enter your first name">
           </div>
           <div class="form-group">
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" placeholder="Phone Number" required />
+            <label>Last Name</label>
+            <input type="text" id="lastName" placeholder="Enter your last name">
           </div>
-          <button type="submit" class="btn">Save Changes</button>
-        </form>
+          
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="Enter your email">
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" placeholder="Enter your phone number">
+          </div>
+          <button onclick="saveProfile()">Save Changes</button>
+
+          <div class="change-password-section">
+            <h2>Change Password</h2>
+            <div class="form-group">
+              <label>Current Password</label>
+              <input type="password">
+            </div>
+            <div class="form-group">
+              <label>New Password</label>
+              <input type="password">
+            </div>
+            <div class="form-group">
+              <label>Confirm New Password</label>
+              <input type="password">
+            </div>
+            <button class="btn">Update Password</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="listings" class="section">
+        <div class="profile-content">
+          <h2>My Listings</h2>
+          <p>You can manage all your listed properties here.</p>
+          <div class="listing">
+            <h3>Cozy Apartment in City Center</h3>
+            <p>2 Bed • 1 Bath • ₱15,000/month</p>
+            <button>Edit</button>
+            <button>Delete</button>
+          </div>
+          <div class="listing">
+            <h3>Studio Unit near Campus</h3>
+            <p>1 Bed • ₱8,000/month</p>
+            <button>Edit</button>
+            <button>Delete</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="favorites" class="section">
+        <div class="profile-content">
+          <h2>Favorites</h2>
+          <p>Here are the properties you've marked as favorites.</p>
+          <div class="listing">
+            <h3>Modern Condo in Divisoria</h3>
+            <p>1 Bed • 1 Bath • ₱18,000/month</p>
+            <button>View</button>
+            <button>Remove</button>
+          </div>
+          <div class="listing">
+            <h3>Dorm Room near WMSU</h3>
+            <p>Shared Room • ₱4,500/month</p>
+            <button>View</button>
+            <button>Remove</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <script src="SCRIPTS/profile.js"></script>
+
+  <script>
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(section => section.classList.remove('active'));
+      document.getElementById(sectionId).classList.add('active');
+    }
+  
+    // Edit Listings
+    document.querySelectorAll('#listings .listing button:nth-child(3)').forEach((editBtn, index) => {
+      editBtn.addEventListener('click', () => {
+        const listing = editBtn.closest('.listing');
+        const title = listing.querySelector('h3');
+        const price = listing.querySelector('p');
+  
+        const newTitle = prompt("Edit Listing Title:", title.textContent);
+        const newDetails = prompt("Edit Listing Details:", price.textContent);
+  
+        if (newTitle !== null) title.textContent = newTitle;
+        if (newDetails !== null) price.textContent = newDetails;
+      });
+    });
+  
+    // Disable Delete Listings
+    document.querySelectorAll('#listings .listing button:nth-child(4)').forEach(deleteBtn => {
+      deleteBtn.addEventListener('click', () => {
+        alert("You cannot delete your listing. Please contact the admin.");
+      });
+    });
+  
+    // View Favorite
+    document.querySelectorAll('#favorites .listing button:nth-child(3)').forEach(viewBtn => {
+      viewBtn.addEventListener('click', () => {
+        alert("Redirecting to property details page...");
+        // Replace with actual redirection logic later
+      });
+    });
+  
+    // Remove Favorite
+    document.querySelectorAll('#favorites .listing button:nth-child(4)').forEach(removeBtn => {
+      removeBtn.addEventListener('click', () => {
+        const listing = removeBtn.closest('.listing');
+        listing.remove();
+      });
+    });
+
+    function saveProfile() {
+  const firstName = document.getElementById("firstName").value.trim();
+  const lastName = document.getElementById("lastName").value.trim();
+  const email = document.querySelector("input[type='email']").value.trim();
+  const phone = document.querySelector("input[type='tel']").value.trim();
+
+  console.log("Saving Profile:");
+  console.log("First Name:", firstName);
+  console.log("Last Name:", lastName);
+  console.log("Email:", email);
+  console.log("Phone:", phone);
+
+  alert("Profile saved successfully!");
+}
+
+  </script>
+  
 </body>
+
 </html>
