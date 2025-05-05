@@ -425,32 +425,10 @@ const properties = [
 ];
 
 
-let currentPage = 1;
-const propertiesPerPage = 8;
 let cardsPerPage = window.innerWidth >= 992 ? 4 : (window.innerWidth >= 768 ? 3 : 2);
 let detailModalInstance = null;
 let modalCarouselInstance = null;
 let bookingModalInstance = null;
-
-properties.forEach(property => {
-  if (!property.type) {
-    if (property.name.toLowerCase().includes('house') || 
-        property.name.toLowerCase().includes('villa')) {
-      property.type = 'house';
-    } else if (property.name.toLowerCase().includes('apartment') || 
-               property.name.toLowerCase().includes('condo')) {
-      property.type = 'apartment';
-    } else if (property.name.toLowerCase().includes('dorm')) {
-      property.type = 'dormitory';
-    } else {
-      property.type = 'house'; // Default type
-    }
-  }
-});
-
-function getPriceValue(priceString) {
-  return parseInt(priceString.replace(/[₱,\s/mo]/g, ''));
-}
 
 function initializeBookingModal() {
   const bookingModal = document.getElementById('bookingModal');
@@ -503,41 +481,19 @@ document.addEventListener('click', function(e) {
 });
 
 function filterProperties() {
-  const propertyType = document.querySelector('input[name="propertyType"]:checked').id;
+  const searchTerm = document.getElementById('locationInput').value.toLowerCase();
   const selectedBarangay = document.getElementById('barangaySelect').value;
-  const styleKeyword = document.getElementById('styleInput').value.toLowerCase();
+  const propertyType = document.querySelector('input[name="propertyType"]:checked').id;
   const priceRange = document.getElementById('priceRange').value;
 
   const filteredProperties = properties.filter(property => {
-    // Type filter
-    const matchesType = propertyType === property.type;
-    
-    // Barangay filter
-    const matchesBarangay = !selectedBarangay || 
-                           property.location.includes(selectedBarangay);
-    
-    // Style/Keyword filter
-    const matchesStyle = !styleKeyword || 
-                        property.name.toLowerCase().includes(styleKeyword) ||
-                        property.description.toLowerCase().includes(styleKeyword);
-    
-    // Price range filter
-    let matchesPrice = true;
-    if (priceRange !== 'Any Price') {
-      const propertyPrice = getPriceValue(property.price);
-      if (priceRange === '₱30,000+') {
-        matchesPrice = propertyPrice >= 30000;
-      } else {
-        const [min, max] = priceRange.split(' - ')
-          .map(price => parseInt(price.replace(/[₱,]/g, '')));
-        matchesPrice = propertyPrice >= min && propertyPrice <= max;
-      }
-    }
+    const matchesSearch = property.name.toLowerCase().includes(searchTerm) || 
+                         property.location.toLowerCase().includes(searchTerm);
+    const matchesBarangay = !selectedBarangay || property.location.includes(selectedBarangay);
 
-    return matchesType && matchesBarangay && matchesStyle && matchesPrice;
+    return matchesSearch && matchesBarangay;
   });
 
-  currentPage = 1; // Reset to first page when filtering
   renderFilteredProperties(filteredProperties);
 }
 
