@@ -1,52 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - RentEasy</title>
-    <link rel="stylesheet" href="loginStyle.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - RentEasy</title>
+  <link rel="stylesheet" href="loginStyle.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Google Sign-In -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+
+  <!-- Facebook SDK -->
+  <script async defer crossorigin="anonymous"
+    src="https://connect.facebook.net/en_US/sdk.js"></script>
 </head>
 <body>
-    <div class="login">
-        <div class="left-image">
-          <div class="logo">
-            <a href="index.html">
-              <img src="IMG/logo.png" alt="logo">
-              <h1>RentEasy</h1>
-            </a>
-          </div>
-          
-       <div class="quote">
-        <h1><i>Hey there!</i> Ready to<br>
-          find your perfect<br>
-           place with <br>
-           <i>RentEasy?</i></h1>
-       </div>
+  <div class="login">
+    <div class="left-image">
+      <div class="logo">
+        <a href="index.html">
+          <img src="IMG/logo.png" alt="logo">
+          <h1>RentEasy</h1>
+        </a>
+      </div>
+      <div class="quote">
+        <h1><i>Hey there!</i> Ready to<br> find your perfect<br> place with <br><i>RentEasy?</i></h1>
+      </div>
+    </div>
+
+    <div class="form">
+      <h2>Welcome Back</h2>
+      <form id="loginForm" action="#" method="POST">
+        <input type="email" id="email" placeholder="Email Address" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <div id="errorMsg" class="error-message"></div>
+
+        <div class="forgot-password">
+          <a href="#">Forgot Password?</a>
         </div>
+        <button type="submit">Log In</button>
+      </form>
 
-        <div class="form">
-          <h2>Welcome Back</h2>
-          <form id="loginForm" action="#" method="POST">
-            <input type="email" id="email" placeholder="Email Address" required>
-            <input type="password" id="password" placeholder="Password" required>
+      <div class="oauth-buttons" style="margin-top: 20px; text-align:center;">
+        <p>or sign in with</p>
 
-            <div id="errorMsg" class="error-message"></div>
+        <!-- Google Sign-In -->
+        <div id="g_id_onload"
+             data-client_id="767309828085-k7iqqtgbfqlrvaq2hv0urtmnrvam5qdm.apps.googleusercontent.com"
+             data-callback="handleGoogleLogin"
+             data-auto_prompt="false">
+        </div>
+        <div class="g_id_signin" data-type="standard" data-size="large"></div>
 
-            <div class="forgot-password">
-              
-              <a href="#">Forgot Password?</a>
-            </div>
-            <button type="submit">Log In</button>
-          </form>
-    
-          <div class="links">
-          Don't have an account yet?  <a href="signup.html"> <b>Sign Up</b></a>
-          </div>
+        <!-- Facebook Sign-In -->
+        <div id="fb-button" class="fb-login-button"
+             data-width=""
+             data-size="large"
+             data-button-type="login_with"
+             data-layout="default"
+             data-auto-logout-link="false"
+             data-use-continue-as="false"
+             data-scope="public_profile,email"
+             onlogin="checkLoginState();">
         </div>
       </div>
 
-      <script src="SCRIPTS/login.js"></script>
+      <div class="links">
+        Don't have an account yet? <a href="signup.html"><b>Sign Up</b></a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Normal login
+    document.addEventListener("DOMContentLoaded", function () {
+      const form = document.querySelector("form");
+      const errorMsg = document.getElementById("errorMsg");
+
+      function showError(message) {
+        errorMsg.textContent = message;
+        errorMsg.classList.add("vibrate");
+        setTimeout(() => errorMsg.classList.remove("vibrate"), 300);
+      }
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const email = form.querySelector('input[placeholder="Email Address"]').value.trim();
+        const password = form.querySelector('input[placeholder="Password"]').value;
+
+        if (email === "admin@gmail.com" && password === "admin") {
+          window.location.href = "admin.html";
+          return;
+        }
+
+        if (email === "landlord@gmail.com" && password === "landlord") {
+          window.location.href = "landlord.html";
+          return;
+        }
+
+        const users = JSON.parse(localStorage.getItem("users") || "[]");
+        const user = users.find(u => u.email === email && u.password === password);
+
+        if (!user) {
+          showError("Invalid email or password.");
+          return;
+        }
+
+        localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("currentUser", JSON.stringify({ email: user.email, fullName: user.fullName }));
+        window.location.href = "index.html";
+      });
+    });
+
+    // Google login
+    function handleGoogleLogin(response) {
+      const decoded = jwt_decode(response.credential);
+      const email = decoded.email;
+      const fullName = decoded.name;
+
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("currentUser", JSON.stringify({ email, fullName }));
+      window.location.href = "index.html";
+    }
+
+    // Facebook login
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : 'YOUR_FACEBOOK_APP_ID', // <-- Replace this with your FB App ID
+        cookie     : true,
+        xfbml      : true,
+        version    : 'v19.0'
+      });
+    };
+
+    function checkLoginState() {
+      FB.getLoginStatus(function(response) {
+        if (response.status === 'connected') {
+          FB.api('/me', { fields: 'name,email' }, function(profile) {
+            localStorage.setItem("isLoggedIn", "true");
+            localStorage.setItem("currentUser", JSON.stringify({
+              email: profile.email,
+              fullName: profile.name
+            }));
+            window.location.href = "index.html";
+          });
+        }
+      });
+    }
+  </script>
 </body>
 </html>
