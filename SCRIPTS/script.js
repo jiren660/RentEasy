@@ -424,11 +424,34 @@ const properties = [
   }
 ];
 
-
+let currentPage = 1;
+const propertiesPerPage = 8;
 let cardsPerPage = window.innerWidth >= 992 ? 4 : (window.innerWidth >= 768 ? 3 : 2);
 let detailModalInstance = null;
 let modalCarouselInstance = null;
 let bookingModalInstance = null;
+let filteredProperties = [...properties];
+let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+
+properties.forEach(property => {
+  if (!property.type) {
+    if (property.name.toLowerCase().includes('house') || 
+        property.name.toLowerCase().includes('villa')) {
+      property.type = 'house';
+    } else if (property.name.toLowerCase().includes('apartment') || 
+               property.name.toLowerCase().includes('condo')) {
+      property.type = 'apartment';
+    } else if (property.name.toLowerCase().includes('dorm')) {
+      property.type = 'dormitory';
+    } else {
+      property.type = 'house'; // Default type
+    }
+  }
+});
+
+function getPriceValue(priceString) {
+  return parseInt(priceString.replace(/[₱,\s/mo]/g, ''));
+}
 
 function initializeBookingModal() {
   const bookingModal = document.getElementById('bookingModal');
@@ -461,8 +484,6 @@ document.getElementById('submitBooking')?.addEventListener('click', function() {
   }
 });
 
-let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-
 document.addEventListener('click', function(e) {
   if (e.target.closest('.add-to-favorites')) {
     const propertyIndex = e.target.closest('.add-to-favorites').dataset.propertyIndex;
@@ -481,20 +502,42 @@ document.addEventListener('click', function(e) {
 });
 
 function filterProperties() {
-  const searchTerm = document.getElementById('locationInput').value.toLowerCase();
-  const selectedBarangay = document.getElementById('barangaySelect').value;
   const propertyType = document.querySelector('input[name="propertyType"]:checked').id;
+  const selectedBarangay = document.getElementById('barangaySelect').value;
+  const styleKeyword = document.getElementById('styleInput').value.toLowerCase();
   const priceRange = document.getElementById('priceRange').value;
 
-  const filteredProperties = properties.filter(property => {
-    const matchesSearch = property.name.toLowerCase().includes(searchTerm) || 
-                         property.location.toLowerCase().includes(searchTerm);
-    const matchesBarangay = !selectedBarangay || property.location.includes(selectedBarangay);
+  filteredProperties = properties.filter(property => {
+    // Type filter
+    const matchesType = propertyType === property.type;
+    
+    // Barangay filter
+    const matchesBarangay = !selectedBarangay || 
+                           property.location.includes(selectedBarangay);
+    
+    // Style/Keyword filter
+    const matchesStyle = !styleKeyword || 
+                        property.name.toLowerCase().includes(styleKeyword) ||
+                        property.description.toLowerCase().includes(styleKeyword);
+    
+    // Price range filter
+    let matchesPrice = true;
+    if (priceRange !== 'Any Price') {
+      const propertyPrice = getPriceValue(property.price);
+      if (priceRange === '₱30,000+') {
+        matchesPrice = propertyPrice >= 30000;
+      } else {
+        const [min, max] = priceRange.split(' - ')
+          .map(price => parseInt(price.replace(/[₱,]/g, '')));
+        matchesPrice = propertyPrice >= min && propertyPrice <= max;
+      }
+    }
 
-    return matchesSearch && matchesBarangay;
+    return matchesType && matchesBarangay && matchesStyle && matchesPrice;
   });
 
-  renderFilteredProperties(filteredProperties);
+  currentPage = 1; // Reset to first page when filtering
+  renderProperties();
 }
 
 document.getElementById('locationInput')?.addEventListener('input', filterProperties);
@@ -513,22 +556,26 @@ function renderProperties() {
   if (!container) return;
   container.innerHTML = '';
 
-  const numProperties = properties.length;
-  if (numProperties === 0) {
-    container.innerHTML = '<p class="col-12 text-center">No properties found.</p>';
+  if (filteredProperties.length === 0) {
+    container.innerHTML = `
+      <div class="col-12 text-center py-5">
+        <h3>No properties found</h3>
+        <p>Try adjusting your filters to see more results.</p>
+      </div>
+    `;
+    updatePaginationButtons();
     return;
   }
+  const startIndex = (currentPage - 1) * propertiesPerPage;
+  const endIndex = startIndex + propertiesPerPage;
+  const paginatedProperties = filteredProperties.slice(startIndex, endIndex);
 
-  cardsPerPage = window.innerWidth >= 992 ? 4 : (window.innerWidth >= 768 ? 3 : 2);
-
-  properties.forEach((property, index) => {
+  paginatedProperties.forEach((property, index) => {
     const card = document.createElement('div');
     const lgCols = Math.max(1, Math.floor(12 / cardsPerPage));
-    const mdCols = window.innerWidth >= 768 ? 4 : 6;
-    const smCols = 6;
-    card.className = `col-lg-${lgCols} col-md-${mdCols} col-sm-${smCols} mb-4`;
+    card.className = `col-lg-${lgCols} col-md-6 col-sm-6 mb-4`;
 
-    const uniquePropertyId = `prop-${index}`;
+    const uniquePropertyId = `prop-${startIndex + index}`;
     const carouselId = `carousel-${uniquePropertyId}`;
 
     card.innerHTML = `
@@ -552,7 +599,12 @@ function renderProperties() {
           </button>` : ''}
         </div>
         <div class="card-body d-flex flex-column">
-          <h6 class="text-muted mb-1">${property.price}</h6>
+          <div class="d-flex justify-content-between align-items-start">
+            <h6 class="text-muted mb-1">${property.price}</h6>
+            <span class="badge bg-${property.type === 'house' ? 'success' : 
+                                    property.type === 'apartment' ? 'primary' : 
+                                    'warning'}">${property.type}</span>
+          </div>
           <h5 class="card-title">${property.name}</h5>
           <p class="text-muted mb-2"><i class="fas fa-map-marker-alt me-1"></i>${property.location}</p>
           <div class="property-info d-flex justify-content-between mt-auto pt-2">
@@ -562,7 +614,7 @@ function renderProperties() {
           </div>
         </div>
         <div class="card-footer bg-transparent border-top-0 text-center pb-3">
-          <button class="btn btn-success w-100 view-details" data-index="${index}">View Details</button>
+          <button class="btn btn-success w-100 view-details" data-index="${startIndex + index}">View Details</button>
         </div>
       </div>
     `;
@@ -573,58 +625,62 @@ function renderProperties() {
       new bootstrap.Carousel(carouselElement, { interval: false });
     }
   });
+
+  updatePaginationButtons();
+}
+
+// Update Pagination Buttons
+function updatePaginationButtons() {
+  const totalPages = Math.ceil(filteredProperties.length / propertiesPerPage);
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  
+  if (prevBtn && nextBtn) {
+    prevBtn.style.display = totalPages > 1 ? 'block' : 'none';
+    nextBtn.style.display = totalPages > 1 ? 'block' : 'none';
+    
+    prevBtn.disabled = currentPage === 1;
+    nextBtn.disabled = currentPage === totalPages;
+  }
 }
 
 function showPropertyDetails(index) {
-  if (index < 0 || index >= properties.length) {
-    console.error("Invalid property index:", index);
-    return;
-  }
-  const property = properties[index];
+  if (index < 0 || index >= filteredProperties.length) return;
+  
+  const property = filteredProperties[index];
   const modalElement = document.getElementById('propertyDetailModal');
-  const modalPropertyName = document.getElementById('modalPropertyName');
+  
+  document.getElementById('modalPropertyName').textContent = property.name;
+  document.getElementById('modalPropertyPrice').textContent = property.price;
+  document.getElementById('modalPropertyLocation').textContent = property.location;
+  document.getElementById('modalPropertyBeds').textContent = property.beds;
+  document.getElementById('modalPropertyBaths').textContent = property.baths;
+  document.getElementById('modalPropertySize').textContent = property.size;
+  document.getElementById('modalPropertyDescription').textContent = 
+    property.description || 'No description available.';
+
   const modalCarouselInner = document.getElementById('modalCarouselInner');
-  const modalPropertyPrice = document.getElementById('modalPropertyPrice');
-  const modalPropertyLocation = document.getElementById('modalPropertyLocation');
-  const modalPropertyBeds = document.getElementById('modalPropertyBeds');
-  const modalPropertyBaths = document.getElementById('modalPropertyBaths');
-  const modalPropertySize = document.getElementById('modalPropertySize');
-  const modalPropertyDescription = document.getElementById('modalPropertyDescription');
-  const modalCarouselElement = document.getElementById('modalPropertyCarousel');
+  modalCarouselInner.innerHTML = property.images.map((img, idx) => `
+    <div class="carousel-item ${idx === 0 ? 'active' : ''}">
+      <img src="${img}" class="d-block w-100" alt="${property.name} image ${idx + 1}" 
+           style="max-height: 400px; object-fit: cover;">
+    </div>
+  `).join('');
 
-  modalPropertyName.textContent = property.name;
-  modalPropertyPrice.textContent = property.price;
-  modalPropertyLocation.textContent = property.location;
-  modalPropertyBeds.textContent = property.beds;
-  modalPropertyBaths.textContent = property.baths;
-  modalPropertySize.textContent = property.size;
-  modalPropertyDescription.textContent = property.description || 'No description available.';
-
-  modalCarouselInner.innerHTML = '';
-  property.images.forEach((img, idx) => {
-    const itemDiv = document.createElement('div');
-    itemDiv.className = `carousel-item ${idx === 0 ? 'active' : ''}`;
-    itemDiv.innerHTML = `<img src="${img}" class="d-block w-100" alt="${property.name} image ${idx + 1}" style="max-height: 400px; object-fit: cover;">`;
-    modalCarouselInner.appendChild(itemDiv);
-  });
-
-  const controls = modalCarouselElement.querySelectorAll('.carousel-control-prev, .carousel-control-next');
-  if (property.images.length <= 1) {
-    controls.forEach(control => control.style.display = 'none');
-  } else {
-    controls.forEach(control => control.style.display = 'block');
+  // Update favorites button
+  const favButton = modalElement.querySelector('.add-to-favorites');
+  if (favButton) {
+    favButton.dataset.propertyIndex = index;
+    if (favorites.includes(index.toString())) {
+      favButton.innerHTML = '<i class="fas fa-heart"></i> Remove from Favorites';
+    } else {
+      favButton.innerHTML = '<i class="far fa-heart"></i> Add to Favorites';
+    }
   }
 
   if (!detailModalInstance) {
     detailModalInstance = new bootstrap.Modal(modalElement);
   }
-  if (modalCarouselInstance) {
-    modalCarouselInstance.dispose();
-  }
-  if (property.images.length > 0 && typeof bootstrap !== 'undefined') {
-    modalCarouselInstance = new bootstrap.Carousel(modalCarouselElement, { interval: 10000 });
-  }
-
   detailModalInstance.show();
 }
 
