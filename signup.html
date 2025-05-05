@@ -7,6 +7,9 @@
   <title>Sign Up - RentEasy</title>
   <link rel="stylesheet" href="signupStyle.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- ✅ NEW Google Identity Services Script -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 
 <body>
@@ -45,6 +48,41 @@
         <button type="submit">Sign Up</button>
       </form>
 
+      <!-- Social Sign-In Section -->
+      <div class="oauth-buttons" style="margin-top: 20px; text-align:center;">
+        <p>or sign up with</p>
+
+        <!-- ✅ Google Sign-In -->
+        <div id="g_id_onload"
+             data-client_id="767309828085-k7iqqtgbfqlrvaq2hv0urtmnrvam5qdm.apps.googleusercontent.com"
+             data-context="signup"
+             data-ux_mode="popup"
+             data-callback="handleGoogleLogin"
+             data-auto_prompt="false">
+        </div>
+
+        <div class="g_id_signin"
+             data-type="standard"
+             data-shape="rectangular"
+             data-theme="outline"
+             data-text="signup_with"
+             data-size="large"
+             data-logo_alignment="left">
+        </div>
+
+        <!-- Facebook Sign-In -->
+        <div id="fb-button" class="fb-login-button"
+             data-width=""
+             data-size="large"
+             data-button-type="login_with"
+             data-layout="default"
+             data-auto-logout-link="false"
+             data-use-continue-as="false"
+             data-scope="public_profile,email"
+             onlogin="checkLoginState();">
+        </div>
+      </div>
+
       <div class="links">
         Already have an account? <a href="login.html"><b>Log In</b></a>
       </div>
@@ -52,6 +90,48 @@
   </div>
 
   <script src="SCRIPTS/signup.js"></script>
+
+  <script>
+    // ✅ Google Login Callback
+    function handleGoogleLogin(response) {
+      const token = response.credential;
+      console.log("Google JWT ID Token:", token);
+      // You can decode the JWT or send it to your server for verification
+    }
+
+    // ✅ Facebook Login Flow
+    function checkLoginState() {
+      FB.getLoginStatus(function(response) {
+        statusChangeCallback(response);
+      });
+    }
+
+    function statusChangeCallback(response) {
+      if (response.status === 'connected') {
+        console.log("Facebook login success: ", response);
+      } else {
+        console.log("Facebook login failed.");
+      }
+    }
+
+    // ✅ Facebook SDK Initialization
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : 'your-app-id', // Replace with your Facebook App ID
+        cookie     : true,
+        xfbml      : true,
+        version    : 'v13.0'
+      });
+    };
+
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
 </body>
 
 </html>
