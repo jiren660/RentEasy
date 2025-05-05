@@ -28,6 +28,26 @@ header {
   -webkit-backdrop-filter: blur(5px);
 }
 
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  align-items: center;
+}
+
+.navbar-brand {
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item{
+  text-align: center;
+}
 .logo {
   display: flex;
   align-items: center;
@@ -43,6 +63,27 @@ header {
   font-size: 2rem;
   color: #212529;
   margin: 0;
+  font-weight: 600;
+}
+
+.nav-link {
+  padding: 8px 12px !important;
+  font-weight: 500;
+  color: #495057 !important;
+  border-radius: 6px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  position: relative;
+  font-size: 0.95rem;
+}
+
+.nav-link:hover {
+  color: #000 !important;
+  background-color: #e9ecef;
+}
+
+.nav-link.active {
+  color: #ffffff !important;
+  background-color: #77988c;
   font-weight: 600;
 }
 
@@ -921,4 +962,15 @@ footer p {
      footer p {
         font-size: 0.75rem;
     }
+}
+
+@media (max-width: 576px) {
+  .logo h1 {
+    font-size: 1.4rem;
+  }
+
+  .logo img {
+    width: 35px;
+    height: 35px;
+  }
 }
