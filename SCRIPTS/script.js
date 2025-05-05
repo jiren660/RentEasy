@@ -113,6 +113,314 @@ const properties = [
       'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80'
     ],
     description: 'A peaceful home located in the serene Pasonanca area, close to the park. Ideal for those who appreciate tranquility and nature.'
+  },
+  {
+    name: 'Student Dormitory Near WMSU',
+    location: 'Baliwasan, Zamboanga City',
+    price: '₱4,500 / mo',
+    beds: 1,
+    baths: 1,
+    size: '15m²',
+    type: 'dormitory',
+    images: [
+      'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400',
+      'https://images.unsplash.com/photo-1527004013197-933c4bb611b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400'
+    ],
+    description: 'Affordable student dormitory with basic amenities, perfect for WMSU students. Includes free WiFi, study area, and common kitchen.'
+  },
+  {
+    name: 'Ladies Dormitory',
+    location: 'Tumaga, Zamboanga City',
+    price: '₱3,800 / mo',
+    beds: 1,
+    baths: 1,
+    size: '12m²',
+    type: 'dormitory',
+    images: [
+      'https://images.unsplash.com/photo-1595576508898-0ad5c879a061?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400',
+      'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400'
+    ],
+    description: 'Female-only dormitory with 24/7 security, near universities. Includes bed, study table, and shared kitchen facilities.'
+  },
+  {
+    name: 'Modern Studio Apartment',
+    location: 'Sta. Maria, Zamboanga City',
+    price: '₱8,500 / mo',
+    beds: 1,
+    baths: 1,
+    size: '30m²',
+    type: 'apartment',
+    images: [
+      'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400',
+      'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400'
+    ],
+    description: 'Newly renovated studio apartment with modern furnishings. Perfect for young professionals.'
+  },
+  {
+    name: 'Family Apartment Complex',
+    location: 'Tetuan, Zamboanga City',
+    price: '₱15,000 / mo',
+    beds: 3,
+    baths: 2,
+    size: '85m²',
+    type: 'apartment',
+    images: [
+      'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400',
+      'https://images.unsplash.com/photo-1522444195799-478538b28823?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400'
+    ],
+    description: 'Spacious apartment in a family-friendly complex with playground and parking.'
+  },
+  {
+    name: 'Executive Apartment',
+    location: 'City Proper, Zamboanga City',
+    price: '₱25,000 / mo',
+    beds: 2,
+    baths: 2,
+    size: '90m²',
+    type: 'apartment',
+    images: [
+      'https://images.unsplash.com/photo-1502672023488-70e25813eb80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400',
+      'https://images.unsplash.com/photo-1493809842364-78817add7ffb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400'
+    ],
+    description: 'Luxury apartment with high-end finishes, security, and amazing city views.'
+  },
+  {
+    name: 'Student-Friendly House',
+    location: 'Pasonanca, Zamboanga City',
+    price: '₱20,000 / mo',
+    beds: 4,
+    baths: 2,
+    size: '120m²',
+    type: 'house',
+    images: [
+      'https://images.unsplash.com/photo-1568605114967-8130f3a36994?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400',
+      'https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400'
+    ],
+    description: 'Perfect for student sharing, near universities with study areas and fast internet.'
+  },
+  {
+    name: 'Beachside Dormitory',
+    location: 'Baliwasan, Zamboanga City',
+    price: '₱5,500 / mo',
+    beds: 1,
+    baths: 1,
+    size: '18m²',
+    type: 'dormitory',
+    images: [
+      'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400',
+      'https://images.unsplash.com/photo-1527004013197-933c4bb611b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400'
+    ],
+    description: 'Comfortable dormitory rooms with sea view, perfect for students or young professionals.'
+  },
+  {
+    name: 'Traditional Filipino House',
+    location: 'Guiwan, Zamboanga City',
+    price: '₱17,000 / mo',
+    beds: 3,
+    baths: 2,
+    size: '130m²',
+    type: 'house',
+    images: [
+      'https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400',
+      'https://images.unsplash.com/photo-1568605114967-8130f3a36994?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400'
+    ],
+    description: 'Beautiful traditional house with modern amenities, perfect for families who appreciate Filipino architecture.'
+  },
+  {
+    name: 'Mixed Dormitory',
+    location: 'Tumaga, Zamboanga City',
+    price: '₱4,000 / mo',
+    beds: 1,
+    baths: 1,
+    size: '14m²',
+    type: 'dormitory',
+    images: [
+      'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400',
+      'https://images.unsplash.com/photo-1527004013197-933c4bb611b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400'
+    ],
+    description: 'Affordable mixed dormitory with separate floors for male and female residents. Near commercial areas.'
+  },
+  {
+    name: 'Premium Apartment',
+    location: 'Sta. Maria, Zamboanga City',
+    price: '₱28,000 / mo',
+    beds: 3,
+    baths: 2,
+    size: '110m²',
+    type: 'apartment',
+    images: [
+      'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400',
+      'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400'
+    ],
+    description: 'High-end apartment with premium finishes, smart home features, and excellent security.'
+  },
+  {
+    name: 'Luxury Beachfront Villa',
+    location: 'Baliwasan, Zamboanga City',
+    price: '₱55,000 / mo',
+    beds: 5,
+    baths: 4,
+    size: '350m²',
+    type: 'house',
+    images: [
+      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400',
+      'https://images.unsplash.com/photo-1613490493576-7fde63acd811?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400'
+    ],
+    description: 'Stunning beachfront villa with private access to beach, infinity pool, and modern luxury amenities. Perfect for exclusive living.'
+  },
+  {
+    name: 'Budget Student Dorm',
+    location: 'Tumaga, Zamboanga City',
+    price: '₱3,500 / mo',
+    beds: 1,
+    baths: 1,
+    size: '12m²',
+    type: 'dormitory',
+    images: [
+      'https://images.unsplash.com/photo-1595576508898-0ad5c879a061?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400',
+      'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400'
+    ],
+    description: 'Affordable dormitory option for students with basic amenities, shared kitchen, and study area.'
+  },
+  {
+    name: 'Modern Townhouse',
+    location: 'Tetuan, Zamboanga City',
+    price: '₱23,000 / mo',
+    beds: 3,
+    baths: 3,
+    size: '140m²',
+    type: 'house',
+    images: [
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400',
+      'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400'
+    ],
+    description: 'Contemporary townhouse with modern amenities, smart home features, and secure parking.'
+  },
+  {
+    name: 'Premium Student Housing',
+    location: 'Pasonanca, Zamboanga City',
+    price: '₱7,500 / mo',
+    beds: 1,
+    baths: 1,
+    size: '25m²',
+    type: 'dormitory',
+    images: [
+      'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400',
+      'https://images.unsplash.com/photo-1595576508898-0ad5c879a061?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400'
+    ],
+    description: 'Upscale student accommodation with private bathroom, study area, and premium amenities.'
+  },
+  {
+    name: 'Garden Apartment',
+    location: 'Guiwan, Zamboanga City',
+    price: '₱18,500 / mo',
+    beds: 2,
+    baths: 2,
+    size: '95m²',
+    type: 'apartment',
+    images: [
+      'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400',
+      'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400'
+    ],
+    description: 'Ground floor apartment with private garden, perfect for families with children or pet owners.'
+  },
+  {
+    name: 'City View Penthouse',
+    location: 'City Proper, Zamboanga City',
+    price: '₱35,000 / mo',
+    beds: 3,
+    baths: 2,
+    size: '150m²',
+    type: 'apartment',
+    images: [
+      'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400',
+      'https://images.unsplash.com/photo-1522444195799-478538b28823?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400'
+    ],
+    description: 'Luxurious penthouse apartment with panoramic city views, modern finishes, and roof deck access.'
+  },
+  {
+    name: 'Eco-Friendly House',
+    location: 'Pasonanca, Zamboanga City',
+    price: '₱27,000 / mo',
+    beds: 3,
+    baths: 2,
+    size: '120m²',
+    type: 'house',
+    images: [
+      'https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400',
+      'https://images.unsplash.com/photo-1568605114967-8130f3a36994?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400'
+    ],
+    description: 'Sustainable home with solar panels, rainwater harvesting, and energy-efficient design.'
+  },
+  {
+    name: 'Working Professional Dorm',
+    location: 'Sta. Maria, Zamboanga City',
+    price: '₱6,500 / mo',
+    beds: 1,
+    baths: 1,
+    size: '20m²',
+    type: 'dormitory',
+    images: [
+      'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400',
+      'https://images.unsplash.com/photo-1527004013197-933c4bb611b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400'
+    ],
+    description: 'Dormitory designed for working professionals with dedicated workspace and high-speed internet.'
+  },
+  {
+    name: 'Heritage House',
+    location: 'City Proper, Zamboanga City',
+    price: '₱32,000 / mo',
+    beds: 4,
+    baths: 3,
+    size: '200m²',
+    type: 'house',
+    images: [
+      'https://images.unsplash.com/photo-1568605114967-8130f3a36994?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400',
+      'https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400'
+    ],
+    description: 'Restored heritage house with modern amenities while maintaining its historic charm.'
+  },
+  {
+    name: 'Couple\'s Apartment',
+    location: 'Tetuan, Zamboanga City',
+    price: '₱12,000 / mo',
+    beds: 1,
+    baths: 1,
+    size: '55m²',
+    type: 'apartment',
+    images: [
+      'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400',
+      'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400'
+    ],
+    description: 'Cozy apartment perfect for couples, featuring modern amenities and romantic balcony.'
+  },
+  {
+    name: 'Family Compound',
+    location: 'Guiwan, Zamboanga City',
+    price: '₱45,000 / mo',
+    beds: 6,
+    baths: 4,
+    size: '300m²',
+    type: 'house',
+    images: [
+      'https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400',
+      'https://images.unsplash.com/photo-1568605114967-8130f3a36994?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400'
+    ],
+    description: 'Large family compound with multiple units, shared garden, and entertainment areas.'
+  },
+  {
+    name: 'Studio with Loft',
+    location: 'Sta. Maria, Zamboanga City',
+    price: '₱15,000 / mo',
+    beds: 1,
+    baths: 1,
+    size: '45m²',
+    type: 'apartment',
+    images: [
+      'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400',
+      'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400'
+    ],
+    description: 'Modern studio apartment with loft bedroom, perfect for young professionals.'
   }
 ];
 
