@@ -166,67 +166,80 @@ $(document).ready(function() {
   
   
     function initializeOrUpdateChart() {
-      const ctx = document.getElementById("listingsChart")?.getContext("2d");
-      if (!ctx) {
-          console.error("Chart canvas context not found!");
-          return;
-      }
-  
-      const listingsByMonth = {};
-      const months = new Set();
-  
-      listings.forEach(l => {
-          const monthYear = l.dateAdded.substring(0, 7);
-          months.add(monthYear);
-          listingsByMonth[monthYear] = (listingsByMonth[monthYear] || 0) + 1;
-      });
-  
-      const sortedMonths = Array.from(months).sort();
-      const recentMonths = sortedMonths.slice(-6);
-  
-      const chartLabels = recentMonths.map(my => {
-          const [year, month] = my.split('-');
-          const date = new Date(year, month - 1);
-          return date.toLocaleString('en-US', { month: 'short', year: 'numeric'});
-      });
-      const chartData = recentMonths.map(my => listingsByMonth[my] || 0);
-  
-      if (listingsChartInstance) {
-          listingsChartInstance.destroy();
-      }
-  
-      listingsChartInstance = new Chart(ctx, {
-          type: 'line',
-          data: {
-              labels: chartLabels,
-              datasets: [{
-                  label: 'Listings Added',
-                  data: chartData,
-                  borderColor: 'rgb(119, 152, 140)',
-                  backgroundColor: 'rgba(119, 152, 140, 0.1)',
-                  borderWidth: 2,
-                  fill: true,
-                  tension: 0.1
-              }]
-          },
-          options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              scales: {
-                  y: {
-                      beginAtZero: true,
-                      ticks: {
-                          stepSize: 1,
-                          precision: 0
-                      }
-                  }
-              },
-              plugins: {
-                  legend: { display: true, position: 'top' }
-              }
-          }
-      });
-  }
+        const ctx = document.getElementById("revenueChart")?.getContext("2d");
+        if (!ctx) {
+            console.error("Chart canvas context not found!");
+            return;
+        }
+    
+        // Group payments by month
+        const revenueByMonth = {};
+        payments.forEach(payment => {
+            const monthYear = payment.date.substring(0, 7); // Gets YYYY-MM
+            if (!revenueByMonth[monthYear]) {
+                revenueByMonth[monthYear] = 0;
+            }
+            if (payment.status === 'Paid') {
+                revenueByMonth[monthYear] += payment.amount;
+            }
+        });
+    
+        // Get last 6 months
+        const months = Object.keys(revenueByMonth).sort();
+        const recentMonths = months.slice(-6);
+    
+        const chartLabels = recentMonths.map(my => {
+            const [year, month] = my.split('-');
+            const date = new Date(year, month - 1);
+            return date.toLocaleString('en-US', { month: 'short', year: 'numeric'});
+        });
+        const chartData = recentMonths.map(my => revenueByMonth[my] || 0);
+    
+        if (revenueChartInstance) {
+            revenueChartInstance.destroy();
+        }
+    
+        // Set canvas dimensions to match container
+        const container = ctx.canvas.parentElement;
+        ctx.canvas.style.width = '100%';
+        ctx.canvas.style.height = '300px'; // Fixed height, adjust as needed
+    
+        revenueChartInstance = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: chartLabels,
+                datasets: [{
+                    label: 'Monthly Revenue',
+                    data: chartData,
+                    borderColor: 'rgb(119, 152, 140)',
+                    backgroundColor: 'rgba(119, 152, 140, 0.1)',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: value => formatCurrency(value)
+                        }
+                    }
+                },
+                plugins: {
+                    legend: { display: true, position: 'top' },
+                    tooltip: {
+                        callbacks: {
+                            label: context => formatCurrency(context.parsed.y)
+                        }
+                    }
+                }
+            }
+        });
+    }
   
   
     function renderProperties() {
