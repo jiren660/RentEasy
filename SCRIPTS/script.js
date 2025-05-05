@@ -760,8 +760,8 @@ const properties = [
 }
 ];
 
-let currentPage = 1;
-const propertiesPerPage = 8;
+let currentIndex = 0;
+const itemsPerView = 10;
 let cardsPerPage = window.innerWidth >= 992 ? 4 : (window.innerWidth >= 768 ? 3 : 2);
 let detailModalInstance = null;
 let modalCarouselInstance = null;
@@ -780,7 +780,7 @@ properties.forEach(property => {
     } else if (property.name.toLowerCase().includes('dorm')) {
       property.type = 'dormitory';
     } else {
-      property.type = 'house'; // Default type
+      property.type = 'house';
     }
   }
 });
@@ -837,6 +837,32 @@ document.addEventListener('click', function(e) {
   }
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  // Previous button click handler
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        currentIndex -= itemsPerView;
+        if (currentIndex < 0) currentIndex = 0;
+        renderProperties();
+      }
+    });
+  }
+
+  // Next button click handler
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      if (currentIndex + itemsPerView < filteredProperties.length) {
+        currentIndex += itemsPerView;
+        renderProperties();
+      }
+    });
+  }
+});
+
 function filterProperties() {
   const propertyType = document.querySelector('input[name="propertyType"]:checked').id;
   const selectedBarangay = document.getElementById('barangaySelect').value;
@@ -872,7 +898,7 @@ function filterProperties() {
     return matchesType && matchesBarangay && matchesStyle && matchesPrice;
   });
 
-  currentPage = 1; // Reset to first page when filtering
+  currentIndex = 0;
   renderProperties();
 }
 
@@ -899,19 +925,19 @@ function renderProperties() {
         <p>Try adjusting your filters to see more results.</p>
       </div>
     `;
-    updatePaginationButtons();
+    updateArrowButtons();
     return;
   }
-  const startIndex = (currentPage - 1) * propertiesPerPage;
-  const endIndex = startIndex + propertiesPerPage;
-  const paginatedProperties = filteredProperties.slice(startIndex, endIndex);
 
-  paginatedProperties.forEach((property, index) => {
+  // Get current slice of properties
+  const propertiesToShow = filteredProperties.slice(currentIndex, currentIndex + itemsPerView);
+
+  propertiesToShow.forEach((property, index) => {
     const card = document.createElement('div');
     const lgCols = Math.max(1, Math.floor(12 / cardsPerPage));
     card.className = `col-lg-${lgCols} col-md-6 col-sm-6 mb-4`;
 
-    const uniquePropertyId = `prop-${startIndex + index}`;
+    const uniquePropertyId = `prop-${currentIndex + index}`;
     const carouselId = `carousel-${uniquePropertyId}`;
 
     card.innerHTML = `
@@ -950,7 +976,7 @@ function renderProperties() {
           </div>
         </div>
         <div class="card-footer bg-transparent border-top-0 text-center pb-3">
-          <button class="btn btn-success w-100 view-details" data-index="${startIndex + index}">View Details</button>
+          <button class="btn btn-success w-100 view-details" data-index="${currentIndex + index}">View Details</button>
         </div>
       </div>
     `;
@@ -962,21 +988,18 @@ function renderProperties() {
     }
   });
 
-  updatePaginationButtons();
+  updateArrowButtons();
 }
 
-// Update Pagination Buttons
-function updatePaginationButtons() {
-  const totalPages = Math.ceil(filteredProperties.length / propertiesPerPage);
+// Update Arrow Buttons
+function updateArrowButtons() {
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
-  
+
   if (prevBtn && nextBtn) {
-    prevBtn.style.display = totalPages > 1 ? 'block' : 'none';
-    nextBtn.style.display = totalPages > 1 ? 'block' : 'none';
-    
-    prevBtn.disabled = currentPage === 1;
-    nextBtn.disabled = currentPage === totalPages;
+    prevBtn.style.display = currentIndex > 0 ? 'block' : 'none';
+    nextBtn.style.display = 
+      currentIndex + itemsPerView < filteredProperties.length ? 'block' : 'none';
   }
 }
 
