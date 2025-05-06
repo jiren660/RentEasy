@@ -765,3 +765,8 @@ $(document).ready(function () {
   loadSettings();
 
 });
+
+document.getElementById('logoutBtn').addEventListener('click', function() {
+    // perform any logout logic here, then redirect
+    window.location.href = 'login.html';
+  });
