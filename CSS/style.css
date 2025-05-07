@@ -727,8 +727,12 @@ nav ul li a.active {
     font-size: 1rem;
     line-height: 1.6;
   }
-  
-  
+/* List Unstyled Styles */
+.list-unstyled li {
+  color: #495057;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
   
   @media (max-width: 768px) {
     #about h2 {
