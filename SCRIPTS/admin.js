@@ -407,7 +407,7 @@ $(document).ready(function () {
       console.log('Logout initiated...');
        addActivity("Admin logged out.");
        alert("Logout successful (simulation). You would be redirected.");
-       // window.location.href = 'login.html';
+       window.location.href = 'login.html';
     }
   });
 
