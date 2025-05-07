@@ -728,10 +728,18 @@ nav ul li a.active {
     line-height: 1.6;
   }
 /* List Unstyled Styles */
+.list-unstyled {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 0;
+}
+
 .list-unstyled li {
   color: #495057;
-  font-size: 1.1rem;
-  line-height: 1.7;
+  font-size: 1rem;
+  line-height: 1.6;
+  list-style-type: none;
 }
   
   @media (max-width: 768px) {
