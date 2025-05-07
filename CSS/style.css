@@ -878,6 +878,86 @@ footer p {
   border-width: 0.15em;
 }
 
+/* Payment Method Styles */
+.bank-logos {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bank-logo {
+  height: 24px;
+  width: auto;
+  object-fit: contain;
+  transition: opacity 0.2s ease;
+}
+
+.payment-logo {
+  height: 24px;
+  width: auto;
+  object-fit: contain;
+}
+
+.form-check {
+  padding: 16px;
+  border: 1px solid #dee2e6;
+  border-radius: 0.5rem;
+  margin-bottom: 12px;
+  transition: all 0.2s ease;
+}
+
+.form-check:hover {
+  background-color: #f8f9fa;
+}
+
+.form-check.selected {
+  border-color: #198754;
+  background-color: #f8f9fa;
+}
+
+.form-check-label {
+  cursor: pointer;
+  width: 100%;
+}
+
+/* Bank Transfer Details Panel */
+.payment-details-panel {
+  display: none;
+  margin-top: -8px;
+  margin-bottom: 16px;
+  border: 1px solid #198754;
+  border-top: none;
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+
+.payment-details-panel.active {
+  display: block;
+}
+
+.bank-account-details {
+  background-color: #f8f9fa;
+  border-radius: 0.5rem;
+}
+
+.account-info p {
+  font-size: 0.95rem;
+}
+
+.transfer-instructions {
+  font-size: 0.95rem;
+}
+
+/* File Upload Styling */
+#proofOfPayment {
+  cursor: pointer;
+}
+
+.form-text {
+  font-size: 0.8rem;
+  color: #6c757d;
+}
+
+
 @media (max-width: 992px) {
     .hero-section {
         flex-direction: column;

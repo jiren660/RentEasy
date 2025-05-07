@@ -1114,6 +1114,76 @@ window.addEventListener('resize', () => {
   }, 250);
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+  // Handle payment method selection
+  const paymentMethods = document.querySelectorAll('input[name="paymentMethod"]');
+  const bankTransferDetails = document.getElementById('bankTransferDetails');
+  
+  paymentMethods.forEach(method => {
+    method.addEventListener('change', function() {
+      // Remove selected class from all
+      document.querySelectorAll('.form-check').forEach(check => {
+        check.classList.remove('selected');
+      });
+      
+      // Add selected class to chosen method
+      this.closest('.form-check').classList.add('selected');
+      
+      // Show/hide bank transfer details
+      if (this.id === 'bankTransfer') {
+        bankTransferDetails.classList.add('active');
+      } else {
+        bankTransferDetails.classList.remove('active');
+      }
+    });
+  });
+
+  // Initialize transfer amount
+  updateTransferAmount();
+
+  // Handle file upload
+  document.getElementById('proofOfPayment').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+      // Validate file size (5MB max)
+      if (file.size > 5 * 1024 * 1024) {
+        alert('File size must be less than 5MB');
+        this.value = '';
+        return;
+      }
+      
+      // Validate file type
+      const validTypes = ['image/jpeg', 'image/png', 'application/pdf'];
+      if (!validTypes.includes(file.type)) {
+        alert('Please upload a valid file type (JPG, PNG, or PDF)');
+        this.value = '';
+        return;
+      }
+    }
+  });
+});
+
+// Update transfer amount based on booking details
+function updateTransferAmount() {
+  // Calculate total amount from booking details
+  const amount = calculateTotalAmount(); // Implement this function based on your booking logic
+  document.getElementById('transferAmount').textContent = amount.toLocaleString();
+}
+
+function calculateTotalAmount() {
+  // Get values from your booking form
+  const checkIn = new Date(document.getElementById('checkInDate').value);
+  const checkOut = new Date(document.getElementById('checkOutDate').value);
+  const nights = Math.ceil((checkOut - checkIn) / (1000 * 60 * 60 * 24));
+  
+  const ratePerNight = 5000; // Replace with actual rate
+  const subtotal = nights * ratePerNight;
+  const serviceFee = subtotal * 0.1; // 10% service fee
+  const total = subtotal + serviceFee + 500; // Adding cleaning fee
+  
+  return total;
+}
+
 // Initialize payment handling
 document.addEventListener('DOMContentLoaded', function() {
   // Handle submit booking button
