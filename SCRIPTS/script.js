@@ -1114,6 +1114,121 @@ window.addEventListener('resize', () => {
   }, 250);
 });
 
+// Initialize payment handling
+document.addEventListener('DOMContentLoaded', function() {
+  // Handle submit booking button
+  document.getElementById('submitBooking').addEventListener('click', function(e) {
+    e.preventDefault();
+    
+    // Validate form
+    const form = document.getElementById('bookingForm');
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    // Update payment modal with booking details
+    updatePaymentModal();
+
+    // Hide booking modal and show payment modal
+    const bookingModal = bootstrap.Modal.getInstance(document.getElementById('bookingModal'));
+    bookingModal.hide();
+    
+    const paymentModal = new bootstrap.Modal(document.getElementById('paymentModal'));
+    paymentModal.show();
+  });
+
+  // Handle payment method selection
+  document.querySelectorAll('input[name="paymentMethod"]').forEach(input => {
+    input.addEventListener('change', function() {
+      document.querySelectorAll('.payment-methods .form-check').forEach(check => {
+        check.classList.remove('selected');
+      });
+      this.closest('.form-check').classList.add('selected');
+      
+      // Show/hide card element
+      const cardElement = document.getElementById('cardElement');
+      cardElement.classList.toggle('d-none', this.id !== 'cardPayment');
+    });
+  });
+
+  // Handle confirm payment button
+  document.getElementById('confirmPayment').addEventListener('click', processPayment);
+});
+
+function updatePaymentModal() {
+  // Get booking details
+  const checkIn = new Date(document.getElementById('checkInDate').value);
+  const checkOut = new Date(document.getElementById('checkOutDate').value);
+  const nights = Math.ceil((checkOut - checkIn) / (1000 * 60 * 60 * 24));
+  
+  // Update summary
+  document.getElementById('summaryPropertyImage').src = document.querySelector('#modalPropertyCarousel .carousel-item.active img').src;
+  document.getElementById('summaryPropertyName').textContent = document.getElementById('modalPropertyName').textContent;
+  document.getElementById('summaryPropertyLocation').textContent = document.getElementById('modalPropertyLocation').textContent;
+  document.getElementById('summaryCheckIn').textContent = formatDate(checkIn);
+  document.getElementById('summaryCheckOut').textContent = formatDate(checkOut);
+  
+  // Update price breakdown
+  const ratePerNight = 5000; // Replace with actual rate
+  const subtotal = nights * ratePerNight;
+  const serviceFee = subtotal * 0.1;
+  const total = subtotal + serviceFee + 500;
+
+  document.getElementById('nightCount').textContent = nights;
+  document.getElementById('subtotalAmount').textContent = `₱${subtotal.toLocaleString()}`;
+  document.getElementById('serviceFee').textContent = `₱${serviceFee.toLocaleString()}`;
+  document.getElementById('totalAmount').textContent = `₱${total.toLocaleString()}`;
+}
+
+function processPayment() {
+  const button = document.getElementById('confirmPayment');
+  const spinner = button.querySelector('.spinner-border');
+  
+  // Show processing state
+  button.disabled = true;
+  spinner.classList.remove('d-none');
+  
+  // Hide payment modal and show processing modal
+  const paymentModal = bootstrap.Modal.getInstance(document.getElementById('paymentModal'));
+  paymentModal.hide();
+  
+  const processingModal = new bootstrap.Modal(document.getElementById('processingModal'));
+  processingModal.show();
+
+  // Simulate payment processing
+  setTimeout(() => {
+    processingModal.hide();
+    
+    // Generate booking reference
+    const bookingRef = 'BK-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+    document.getElementById('bookingReference').textContent = bookingRef;
+    document.getElementById('confirmationEmail').textContent = document.getElementById('email').value;
+    
+    // Show success modal
+    const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+    successModal.show();
+    
+    // Reset button state
+    button.disabled = false;
+    spinner.classList.add('d-none');
+  }, 2000);
+}
+
+function showError(message) {
+  document.getElementById('errorMessage').textContent = message;
+  const errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+  errorModal.show();
+}
+
+function formatDate(date) {
+  return date.toLocaleDateString('en-US', {
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric'
+  });
+}
+
 // Check login status
 checkLoginStatus();
 

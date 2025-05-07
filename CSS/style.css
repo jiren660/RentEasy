@@ -813,6 +813,71 @@ footer p {
   border-color: #77988c;
   box-shadow: 0 0 0 0.2rem rgba(119, 152, 140, 0.2);
 }
+
+/* Payment Modal Styles */
+.payment-methods img {
+  height: 24px;
+  object-fit: contain;
+}
+
+#cardElement {
+  padding: 12px;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  background-color: #fff;
+}
+
+.payment-methods .form-check {
+  padding: 1rem;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.payment-methods .form-check:hover {
+  background-color: #f8f9fa;
+}
+
+.payment-methods .form-check-input:checked + .form-check-label {
+  color: #198754;
+}
+
+.payment-methods .form-check.selected {
+  border-color: #198754;
+  background-color: #f8f9fa;
+}
+
+/* Modal Animations */
+.modal.fade .modal-dialog {
+  transition: transform 0.3s ease-out;
+}
+
+.modal.fade .modal-dialog {
+  transform: scale(0.95);
+}
+
+.modal.show .modal-dialog {
+  transform: scale(1);
+}
+
+/* Success/Error Icons */
+.modal-body i.fa-check-circle {
+  color: #198754;
+}
+
+.modal-body i.fa-exclamation-circle {
+  color: #dc3545;
+}
+
+/* Spinner */
+.spinner-border {
+  width: 1rem;
+  height: 1rem;
+  border-width: 0.15em;
+}
+
 @media (max-width: 992px) {
     .hero-section {
         flex-direction: column;
